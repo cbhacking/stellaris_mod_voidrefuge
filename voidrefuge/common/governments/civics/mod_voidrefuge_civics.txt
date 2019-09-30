@@ -1,0 +1,40 @@
+civic_mod_voidrefuge = {
+	playable = { host_has_dlc = "Utopia" }
+	starting_colony = pc_habitat # Changes homeworld class regardless of what is picked for empire
+	habitability_preference = pc_habitat
+	preferred_planet_class_neighbor = no
+	potential = {
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }	# Want to support hive minds eventually
+		authority = { NOT = { value = auth_corporate } }			# Want to support megacorps eventually
+	}
+	possible = {
+		civics = {
+			NOR = {
+				value = civic_post_apocalyptic		# Modifies home planet
+				value = civic_life_seeded			# Modifies home planet
+				value = civic_agrarian_idyll		# Doesn't make sense thematically
+				value = civic_mechanists			# Makes initial generation tricky
+				value = civic_syncretic_evolution	# Makes initial generation tricky
+			}
+		}
+	}
+	modification = no
+	random_weight = {
+		base = 1 # Should be fairly rare
+		modifier = {
+			factor = 0
+			NOT = { host_has_dlc = "Utopia" }
+		}
+		modifier = {
+			# civic has no effect after galaxy generation, disable for random generation
+			factor = 0
+			has_global_flag = game_started
+		}
+	}
+	#description = "civic_tooltip_post_apocalyptic_effects"
+
+	#traits = {
+	#	trait = trait_voidrefuge
+	#}
+}
+

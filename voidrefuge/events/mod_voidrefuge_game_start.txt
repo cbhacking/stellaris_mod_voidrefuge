@@ -1,0 +1,309 @@
+namespace = mod_voidrefuge_game_start
+
+# Grant starting technologies
+country_event = {
+	id = mod_voidrefuge_game_start.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_civic = civic_mod_voidrefuge
+	}
+
+	immediate = {
+		give_technology = { message = no tech = tech_habitat_1 }
+		give_technology = { message = no tech = tech_hydroponics }
+	}
+}
+
+# Create habitats
+planet_event = {
+	id = mod_voidrefuge_game_start.2
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		owner = { has_civic = civic_mod_voidrefuge }
+	}
+
+	immediate = {
+		# Create habitat over homeworld
+		solar_system = {
+			spawn_planet = {
+				class = "pc_habitat"
+				location = PREV
+				orbit_location = yes
+				orbit_angle_offset = 45
+				orbit_distance_offset = 9.899
+				size = 6
+				has_ring = no
+
+				init_effect = {
+					#set_name = "HABITAT_PLANET_NAME"
+					set_planet_entity = {
+						entity = "orbital_habitat_entity"
+						graphical_culture = owner
+					}
+					surveyed = {
+						set_surveyed = yes
+						surveyor = owner
+					}
+					set_all_comms_surveyed = yes
+					clear_blockers = yes
+					set_planet_flag = megastructure
+					set_planet_flag = habitat
+					set_planet_flag = research_habitat
+					set_planet_flag = voidrefuge_home_habitat
+				}
+			}
+			prev = { set_planet_flag = has_megastructure }
+			# Create a mining habitat somewhere
+			random_system_planet = {
+				limit = {
+					NOR = {
+						# Semi-Valid location for habitat
+						has_planet_flag = megastructure
+						has_planet_flag = has_megastructure
+						is_planet_class = pc_habitat
+						#is_asteroid = yes
+						#is_moon = yes
+						is_star = yes
+						# No pre-created deposit; we'll add deposits
+						has_planet_flag = starting_deposit
+					}
+				}
+				solar_system = {
+					spawn_planet = {
+						class = "pc_habitat"
+						location = PREV
+						orbit_location = yes
+						orbit_angle_offset = 45
+						orbit_distance_offset = 9.899
+						size = 6
+						has_ring = no
+
+						init_effect = {
+							set_name = "HABITAT_PLANET_NAME"
+							set_planet_entity = {
+								entity = "orbital_habitat_entity"
+								graphical_culture = owner
+							}
+							surveyed = {
+								set_surveyed = yes
+								surveyor = owner
+							}
+							set_all_comms_surveyed = yes
+							clear_blockers = yes
+							set_planet_flag = megastructure
+							set_planet_flag = habitat
+							set_planet_flag = mining_habitat
+							set_planet_flag = voidrefuge_mining_habitat
+							# Balance out the crippling upkeep of those habitat capitals
+							add_deposit = d_hab_alloy_5
+						}
+					}
+				}
+				set_planet_flag = has_megastructure
+			}
+			# Create an energy habitat somewhere
+			random_system_planet = {
+				limit = {
+					NOR = {
+						# Seni-Valid location for habitat
+						has_planet_flag = megastructure
+						has_planet_flag = has_megastructure
+						is_planet_class = pc_habitat
+						#is_asteroid = yes
+						#is_moon = yes
+						is_star = yes
+						# No pre-created deposit; we'll add deposits
+						has_planet_flag = starting_deposit
+					}
+				}
+				solar_system = {
+					spawn_planet = {
+						class = "pc_habitat"
+						location = THIS
+						orbit_location = yes
+						orbit_angle_offset = 45
+						orbit_distance_offset = 9.899
+						size = 6
+						has_ring = no
+
+						init_effect = {
+							set_name = "HABITAT_PLANET_NAME"
+							set_planet_entity = {
+								entity = "orbital_habitat_entity"
+								graphical_culture = owner
+							}
+							surveyed = {
+								set_surveyed = yes
+								surveyor = owner
+							}
+							set_all_comms_surveyed = yes
+							clear_blockers = yes
+							set_planet_flag = megastructure
+							set_planet_flag = habitat
+							set_planet_flag = energy_habitat
+							set_planet_flag = voidrefuge_energy_habitat
+						}
+					}
+				}
+				set_planet_flag = has_megastructure
+			}
+		}
+	}
+}
+
+# Colonize habitats
+country_event = {
+	id = mod_voidrefuge_game_start.3
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_civic = civic_mod_voidrefuge
+	}
+
+	immediate = {
+		# Set up the capital
+		random_planet_within_border = {
+			limit = { has_planet_flag = voidrefuge_home_habitat }
+			create_colony = {
+				owner = ROOT
+				species = owner_main_species
+				ethos = owner
+			}
+			set_name = "HABITAT_PLANET_NAME"
+			#TODO: Find some way to set the colony designation correctly, or else just...
+			#TODO: move the homeworld and pretend it was always a habitat?
+			#set_designation = col_capital
+			#designation = col_capital
+			owner_main_species = { set_species_homeworld = PREV }
+			set_capital = yes
+
+			# 10 pops need housing (plus some margin) and jobs
+			while = {
+				limit = { num_pops < 10 }
+				create_pop = {
+					species = owner_main_species
+					ethos = random
+				}
+			}
+
+			# 6 housing, 0 jobs
+			add_district = district_hab_housing
+
+			# 3 housing, 3 jobs
+			add_district = district_hab_science
+
+			# 5 housing, 4 jobs
+			add_building = building_hab_major_capital
+
+			# 0 housing, 4 jobs
+			add_building = building_hydroponics_farm
+			add_building = building_foundry_1
+		}
+
+		# Set up the mining habitat
+		random_planet_within_border = {
+			limit = { has_planet_flag = voidrefuge_mining_habitat }
+			create_colony = {
+				owner = ROOT
+				species = owner_main_species
+				ethos = owner
+			}
+			#set_name = "HABITAT_PLANET_NAME"
+
+			# 5 pops need housing (plus some margin) and jobs
+			while = {
+				limit = { num_pops < 6 }
+				create_pop = {
+					species = owner_main_species
+					ethos = random
+				}
+			}
+
+			# 6 housing, 6 jobs
+			add_district = district_hab_mining
+			add_district = district_hab_mining
+
+			# 3 housing, 2 job
+			add_building = building_hab_capital
+
+			# 0 housing, 2 jobs
+			add_building = building_foundry_1
+		}
+
+		# Set up the energy habitat
+		random_planet_within_border = {
+			limit = { has_planet_flag = voidrefuge_energy_habitat }
+			create_colony = {
+				owner = ROOT
+				species = owner_main_species
+				ethos = owner
+			}
+			#set_name = "HABITAT_PLANET_NAME"
+
+			# 8 pops need housing (plus some margin) and jobs
+			while = {
+				limit = { num_pops < 8 }
+				create_pop = {
+					species = owner_main_species
+					ethos = random
+				}
+			}
+
+			# 6 housing, 6 jobs
+			add_district = district_hab_energy
+			add_district = district_hab_energy
+
+			# 3 housing, 2 job
+			add_building = building_hab_capital
+
+			# 0 housing, 2 jobs
+			add_building = building_factory_1
+		}
+	}
+}
+
+# Destroy homeworld
+country_event = {
+	id = mod_voidrefuge_game_start.4
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_civic = civic_mod_voidrefuge
+	}
+
+	immediate = {
+		home_planet = {
+			remove_all_buildings = yes
+			destroy_colony = yes
+			change_pc = pc_toxic
+		}
+	}
+}
+
+# Delete and re-create malfunctioning mining stations
+country_event = {
+	id = mod_voidrefuge_game_start.5
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { has_civic = civic_mod_voidrefuge }
+
+	immediate = {
+		every_mining_station = {
+			limit = {
+				exists = owner
+				owner = { is_country = ROOT }
+			}
+			delete_fleet = THIS
+		}
+		country_event = {
+			id = game_start.33
+		}
+	}
+}
