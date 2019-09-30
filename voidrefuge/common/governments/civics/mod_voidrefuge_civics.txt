@@ -31,7 +31,7 @@ civic_mod_voidrefuge = {
 			has_global_flag = game_started
 		}
 	}
-	#description = "civic_tooltip_post_apocalyptic_effects"
+	description = "civic_tooltip_mod_voidrefuge_effects"
 
 	#traits = {
 	#	trait = trait_voidrefuge

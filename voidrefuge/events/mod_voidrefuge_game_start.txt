@@ -61,34 +61,6 @@ planet_event = {
 		}
 
 		solar_system = {
-			# spawn_planet = {
-			# 	class = "pc_habitat"
-			# 	location = PREV
-			# 	orbit_location = yes
-			# 	orbit_angle_offset = 45
-			# 	orbit_distance_offset = 9.899
-			# 	size = 6
-			# 	has_ring = no
-
-			# 	init_effect = {
-			# 		#set_name = "[PREV.PREV.GetName] Habitat"
-			# 		set_planet_entity = {
-			# 			entity = "orbital_habitat_entity"
-			# 			graphical_culture = owner
-			# 		}
-			# 		surveyed = {
-			# 			set_surveyed = yes
-			# 			surveyor = owner
-			# 		}
-			# 		set_all_comms_surveyed = yes
-			# 		clear_blockers = yes
-			# 		set_planet_flag = megastructure
-			# 		set_planet_flag = habitat
-			# 		set_planet_flag = research_habitat
-			# 		set_planet_flag = voidrefuge_home_habitat
-			# 	}
-			# }
-			# prev = { set_planet_flag = has_megastructure }
 			# Create a mining habitat somewhere
 			random_system_planet = {
 				limit = {
@@ -201,22 +173,7 @@ country_event = {
 	immediate = {
 		# Set up the capital
 		home_planet = {
-		#random_planet_within_border = {
-		#	limit = { has_planet_flag = voidrefuge_home_habitat }
-		#	create_colony = {
-		#		owner = ROOT
-		#		species = owner_main_species
-		#		ethos = owner
-		#	}
-		#	set_name = "HABITAT_PLANET_NAME"
-			#TODO: Find some way to set the colony designation correctly, or else just...
-			#TODO: move the homeworld and pretend it was always a habitat?
-			#set_designation = col_capital
-			#designation = col_capital
-		#	owner_main_species = { set_species_homeworld = PREV }
-		#	set_capital = yes
-
-			# Remove pre-generaged pops, buildings, districts
+			# Remove pre-generated pops, buildings, districts
 			while = {
 				limit = { num_pops > 1 }
 				random_pop = {
@@ -260,6 +217,15 @@ country_event = {
 			}
 			#set_name = "HABITAT_PLANET_NAME"
 
+			# 6 pops need housing (plus some margin) and jobs
+			while = {
+				limit = { num_pops < 6 }
+				create_pop = {
+					species = owner_main_species
+					ethos = random
+				}
+			}
+			
 			# 6 housing, 6 jobs
 			add_district = district_hab_mining
 			add_district = district_hab_mining
@@ -270,14 +236,7 @@ country_event = {
 			# 0 housing, 2 jobs
 			add_building = building_foundry_1
 
-			# 6 pops need housing (plus some margin) and jobs
-			while = {
-				limit = { num_pops < 6 }
-				create_pop = {
-					species = owner_main_species
-					ethos = random
-				}
-			}
+			check_planet_employment = yes
 		}
 
 		# Set up the energy habitat
@@ -308,6 +267,8 @@ country_event = {
 
 			# 0 housing, 2 jobs
 			add_building = building_factory_1
+
+			check_planet_employment = yes
 		}
 	}
 }
