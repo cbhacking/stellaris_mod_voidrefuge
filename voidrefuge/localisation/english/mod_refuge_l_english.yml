@@ -1,0 +1,4 @@
+﻿ l_english:
+ civic_mod_voidrefuge:0 "Refuge in the Void"
+ civic_mod_voidrefuge_desc:0 "This society left its now-uninhabitable home planet for orbital habitats. Its people now look only to space, and have left planets behind for good."
+ civic_tooltip_mod_voidrefuge_effects:0 "Starts with multiple £pc_habitat£ §Y$pc_habitat$s§! and the technology to build more. Habitability preference is set to §Y$trait_pc_habitat_preference$§!, making living on planets difficult.\nCulturally and technologically focused on improving Habitats.\n§Y$building_hab_capital$§! provides a £food£-producing job."
