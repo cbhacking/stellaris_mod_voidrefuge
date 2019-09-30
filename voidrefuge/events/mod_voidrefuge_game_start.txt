@@ -27,36 +27,68 @@ planet_event = {
 	}
 
 	immediate = {
-		# Create habitat over homeworld
 		solar_system = {
+			# Create a new planet where the homeworld currently is
 			spawn_planet = {
-				class = "pc_habitat"
+				class = pc_toxic
 				location = PREV
-				orbit_location = yes
-				orbit_angle_offset = 45
-				orbit_distance_offset = 9.899
-				size = 6
+				size = 18
 				has_ring = no
-
+				
 				init_effect = {
-					#set_name = "HABITAT_PLANET_NAME"
-					set_planet_entity = {
-						entity = "orbital_habitat_entity"
-						graphical_culture = owner
-					}
+					set_name = ROOT
 					surveyed = {
 						set_surveyed = yes
-						surveyor = owner
+						surveyor = PREVPREV.owner
 					}
 					set_all_comms_surveyed = yes
 					clear_blockers = yes
-					set_planet_flag = megastructure
-					set_planet_flag = habitat
-					set_planet_flag = research_habitat
-					set_planet_flag = voidrefuge_home_habitat
+					set_planet_flag = has_megastructure
+
+					ROOT = {
+						#TODO: Fix location?
+						# set_location = {
+						# 	target = PREV
+						# 	angle = 45
+						# 	distance = 9.899
+						# }
+						set_name = "[THIS.GetName] Habitat"
+						set_planet_size = 6
+						set_planet_flag = research_habitat
+					}
 				}
 			}
-			prev = { set_planet_flag = has_megastructure }
+		}
+
+		solar_system = {
+			# spawn_planet = {
+			# 	class = "pc_habitat"
+			# 	location = PREV
+			# 	orbit_location = yes
+			# 	orbit_angle_offset = 45
+			# 	orbit_distance_offset = 9.899
+			# 	size = 6
+			# 	has_ring = no
+
+			# 	init_effect = {
+			# 		#set_name = "[PREV.PREV.GetName] Habitat"
+			# 		set_planet_entity = {
+			# 			entity = "orbital_habitat_entity"
+			# 			graphical_culture = owner
+			# 		}
+			# 		surveyed = {
+			# 			set_surveyed = yes
+			# 			surveyor = owner
+			# 		}
+			# 		set_all_comms_surveyed = yes
+			# 		clear_blockers = yes
+			# 		set_planet_flag = megastructure
+			# 		set_planet_flag = habitat
+			# 		set_planet_flag = research_habitat
+			# 		set_planet_flag = voidrefuge_home_habitat
+			# 	}
+			# }
+			# prev = { set_planet_flag = has_megastructure }
 			# Create a mining habitat somewhere
 			random_system_planet = {
 				limit = {
@@ -83,10 +115,10 @@ planet_event = {
 						has_ring = no
 
 						init_effect = {
-							set_name = "HABITAT_PLANET_NAME"
+							set_name = "[PREV.PREV.GetName] Habitat"
 							set_planet_entity = {
 								entity = "orbital_habitat_entity"
-								graphical_culture = owner
+								graphical_culture = owner_main_species
 							}
 							surveyed = {
 								set_surveyed = yes
@@ -104,6 +136,7 @@ planet_event = {
 					}
 				}
 				set_planet_flag = has_megastructure
+				set_deposit = d_alloys_5
 			}
 			# Create an energy habitat somewhere
 			random_system_planet = {
@@ -123,7 +156,7 @@ planet_event = {
 				solar_system = {
 					spawn_planet = {
 						class = "pc_habitat"
-						location = THIS
+						location = PREV
 						orbit_location = yes
 						orbit_angle_offset = 45
 						orbit_distance_offset = 9.899
@@ -131,7 +164,7 @@ planet_event = {
 						has_ring = no
 
 						init_effect = {
-							set_name = "HABITAT_PLANET_NAME"
+							set_name = "[PREV.PREV.GetName] Habitat"
 							set_planet_entity = {
 								entity = "orbital_habitat_entity"
 								graphical_culture = owner
@@ -167,21 +200,33 @@ country_event = {
 
 	immediate = {
 		# Set up the capital
-		random_planet_within_border = {
-			limit = { has_planet_flag = voidrefuge_home_habitat }
-			create_colony = {
-				owner = ROOT
-				species = owner_main_species
-				ethos = owner
-			}
-			set_name = "HABITAT_PLANET_NAME"
+		home_planet = {
+		#random_planet_within_border = {
+		#	limit = { has_planet_flag = voidrefuge_home_habitat }
+		#	create_colony = {
+		#		owner = ROOT
+		#		species = owner_main_species
+		#		ethos = owner
+		#	}
+		#	set_name = "HABITAT_PLANET_NAME"
 			#TODO: Find some way to set the colony designation correctly, or else just...
 			#TODO: move the homeworld and pretend it was always a habitat?
 			#set_designation = col_capital
 			#designation = col_capital
-			owner_main_species = { set_species_homeworld = PREV }
-			set_capital = yes
+		#	owner_main_species = { set_species_homeworld = PREV }
+		#	set_capital = yes
 
+			# Remove pre-generaged pops, buildings, districts
+			while = {
+				limit = { num_pops > 1 }
+				random_pop = {
+					kill_pop = yes
+				}
+			}
+			remove_all_buildings = yes
+			remove_all_districts = yes
+			clear_blockers = yes
+			
 			# 10 pops need housing (plus some margin) and jobs
 			while = {
 				limit = { num_pops < 10 }
@@ -215,15 +260,6 @@ country_event = {
 			}
 			#set_name = "HABITAT_PLANET_NAME"
 
-			# 5 pops need housing (plus some margin) and jobs
-			while = {
-				limit = { num_pops < 6 }
-				create_pop = {
-					species = owner_main_species
-					ethos = random
-				}
-			}
-
 			# 6 housing, 6 jobs
 			add_district = district_hab_mining
 			add_district = district_hab_mining
@@ -233,6 +269,15 @@ country_event = {
 
 			# 0 housing, 2 jobs
 			add_building = building_foundry_1
+
+			# 6 pops need housing (plus some margin) and jobs
+			while = {
+				limit = { num_pops < 6 }
+				create_pop = {
+					species = owner_main_species
+					ethos = random
+				}
+			}
 		}
 
 		# Set up the energy habitat
