@@ -59,7 +59,7 @@ planet_event = {
 						# 	angle = 45
 						# 	distance = 9.899
 						# }
-						set_name = "[THIS.GetName] Habitat"
+						set_name = "New [THIS.GetName] Capital Habitat"
 						set_planet_size = 6
 						set_planet_flag = energy_habitat
 						set_ring = no
@@ -97,7 +97,7 @@ planet_event = {
 						init_effect = {
 							set_planet_entity = {
 								entity = "orbital_habitat_entity"
-								graphical_culture = owner_main_species
+								graphical_culture = owner
 							}
 							surveyed = {
 								set_surveyed = yes
@@ -112,13 +112,12 @@ planet_event = {
 							set_planet_flag = habitat
 							set_planet_flag = research_habitat
 							set_planet_flag = voidrefuge_abandoned_habitat
-							#TODO: Add blockers
 							#TODO: Add colonization event?
-							set_name = "[PREV.PREV.GetName] Abandoned Habitat"
 						}
 					}
 				}
 				set_planet_flag = has_megastructure
+				set_planet_flag = voidrefuge_abandoned_habitat_planet
 			}
 			# Create a mining habitat somewhere
 			random_system_planet = {
@@ -175,6 +174,7 @@ planet_event = {
 					}
 				}
 				set_planet_flag = has_megastructure
+				set_planet_flag = voidrefuge_mining_habitat_planet
 			}
 		}
 	}
@@ -230,17 +230,13 @@ country_event = {
 			add_building = building_research_lab_1
 
 			add_deposit = d_mod_voidrefuge_depressurized_module
+
+			check_planet_employment = yes
 		}
 
 		# Set up the mining habitat
 		random_planet_within_border = {
 			limit = { has_planet_flag = voidrefuge_mining_habitat }
-			# create_colony = {
-			# 	owner = ROOT
-			# 	species = owner_main_species
-			# 	ethos = owner
-			# }
-			#set_name = "HABITAT_PLANET_NAME"
 
 			remove_all_buildings = yes
 			remove_all_districts = yes
@@ -269,3 +265,48 @@ country_event = {
 	}
 }
 
+
+# Final pass to fix habitats
+country_event = {
+	id = mod_voidrefuge_game_start.4
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_civic = civic_mod_voidrefuge
+	}
+
+	immediate = {
+		# Fix habitat graphical cultures
+		every_planet_within_border = {
+			limit = {
+				is_planet_class = pc_habitat
+			}
+			set_planet_entity = {
+				entity = "orbital_habitat_entity"
+				graphical_culture = ROOT
+			}
+		}
+		# Fix habitat names
+		random_planet_within_border = {
+			limit = { has_planet_flag = voidrefuge_mining_habitat_planet }
+			save_event_target_as = mining_hab_planet
+			solar_system = {
+				random_system_planet = {
+					limit = { has_planet_flag = voidrefuge_mining_habitat }
+					set_name = "[mining_hab_planet.GetName] Mining Habitat"
+				}
+			}
+		}
+		random_planet_within_border = {
+			limit = { has_planet_flag = voidrefuge_abandoned_habitat_planet }
+			save_event_target_as = abandoned_hab_planet
+			solar_system = {
+				random_system_planet = {
+					limit = { has_planet_flag = voidrefuge_abandoned_habitat }
+					set_name = "[abandoned_hab_planet.GetName] Research Habitat"
+				}
+			}
+		}
+	}
+}
