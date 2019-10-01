@@ -206,7 +206,7 @@ country_event = {
 			
 			# 16 pops need housing (plus some margin) and jobs
 			while = {
-				limit = { num_pops < 16 }
+				limit = { num_pops < 17 }
 				create_pop = {
 					species = owner_main_species
 					ethos = random
