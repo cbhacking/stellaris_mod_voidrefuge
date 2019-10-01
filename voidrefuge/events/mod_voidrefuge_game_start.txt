@@ -233,38 +233,6 @@ country_event = {
 		}
 
 		# Set up the mining habitat
-		# random_planet_within_border = {
-		# 	limit = { has_planet_flag = voidrefuge_mining_habitat }
-			# create_colony = {
-			# 	owner = ROOT
-			# 	species = owner_main_species
-			# 	ethos = owner
-			# }
-			# set_name = "[mod_voidrefuge_mining_planet.GetName] Habitat"
-
-			# 6 pops need housing (plus some margin) and jobs
-		# 	while = {
-		# 		limit = { num_pops < 6 }
-		# 		create_pop = {
-		# 			species = owner_main_species
-		# 			ethos = random
-		# 		}
-		# 	}
-			
-		# 	# 6 housing, 6 jobs
-		# 	add_district = district_hab_mining
-		# 	add_district = district_hab_mining
-
-		# 	# 3 housing, 2 job
-		# 	add_building = building_hab_capital
-
-		# 	# 0 housing, 2 jobs
-		# 	add_building = building_foundry_1
-
-		# 	check_planet_employment = yes
-		# }
-
-		# Set up the mining habitat
 		random_planet_within_border = {
 			limit = { has_planet_flag = voidrefuge_mining_habitat }
 			# create_colony = {
@@ -301,43 +269,3 @@ country_event = {
 	}
 }
 
-# Destroy homeworld
-country_event = {
-	id = mod_voidrefuge_game_start.4
-	hide_window = yes
-	is_triggered_only = yes
-
-	trigger = {
-		has_civic = civic_mod_voidrefuge
-	}
-
-	immediate = {
-		home_planet = {
-			remove_all_buildings = yes
-			destroy_colony = yes
-			change_pc = pc_toxic
-		}
-	}
-}
-
-# Delete and re-create malfunctioning mining stations
-country_event = {
-	id = mod_voidrefuge_game_start.5
-	hide_window = yes
-	is_triggered_only = yes
-
-	trigger = { has_civic = civic_mod_voidrefuge }
-
-	immediate = {
-		every_mining_station = {
-			limit = {
-				exists = owner
-				owner = { is_country = ROOT }
-			}
-			delete_fleet = THIS
-		}
-		country_event = {
-			id = game_start.33
-		}
-	}
-}
