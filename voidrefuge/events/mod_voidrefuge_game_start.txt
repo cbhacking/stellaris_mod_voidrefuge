@@ -32,21 +32,28 @@ planet_event = {
 			spawn_planet = {
 				class = pc_toxic
 				location = PREV
-				size = 18
 				has_ring = no
 				
 				init_effect = {
+					random_list = {
+						1 = { set_planet_size = 16 }
+						1 = { set_planet_size = 17 }
+						1 = { set_planet_size = 18 }
+						1 = { set_planet_size = 19 }
+						1 = { set_planet_size = 20 }
+					}
 					set_name = ROOT
 					surveyed = {
 						set_surveyed = yes
 						surveyor = PREVPREV.owner
 					}
 					set_all_comms_surveyed = yes
-					clear_blockers = yes
 					set_planet_flag = has_megastructure
+					clear_deposits = yes
+					add_deposit = d_energy_1
 
 					ROOT = {
-						#TODO: Fix location?
+						#TODO: Fix location? The habitat is over the planet, but not quite where it would be normally
 						# set_location = {
 						# 	target = PREV
 						# 	angle = 45
@@ -54,7 +61,7 @@ planet_event = {
 						# }
 						set_name = "[THIS.GetName] Habitat"
 						set_planet_size = 6
-						set_planet_flag = research_habitat
+						set_planet_flag = energy_habitat
 						set_ring = no
 					}
 				}
@@ -62,7 +69,7 @@ planet_event = {
 		}
 
 		solar_system = {
-			# Create a mining habitat somewhere
+			# Create an uninhabited research habitat somewhere
 			random_system_planet = {
 				limit = {
 					NOR = {
@@ -77,7 +84,6 @@ planet_event = {
 						has_planet_flag = starting_deposit
 					}
 				}
-				# save_global_event_target_as = mod_voidrefuge_mining_planet
 				solar_system = {
 					spawn_planet = {
 						class = pc_habitat
@@ -99,29 +105,26 @@ planet_event = {
 							}
 							set_all_comms_surveyed = yes
 							clear_blockers = yes
+							add_deposit = d_mod_voidrefuge_depressurized_module
+							add_deposit = d_mod_voidrefuge_depressurized_module
+							add_deposit = d_mod_voidrefuge_shattered_section
 							set_planet_flag = megastructure
 							set_planet_flag = habitat
-							set_planet_flag = mining_habitat
-							set_planet_flag = voidrefuge_mining_habitat
-							# Balance out the crippling upkeep of those habitat capitals
-							add_deposit = d_hab_alloy_5
-							create_colony = {
-								owner = ROOT.owner
-								species = owner_main_species
-								ethos = owner
-							}
-							set_name = "[PREV.PREV.GetName] Habitat"
+							set_planet_flag = research_habitat
+							set_planet_flag = voidrefuge_abandoned_habitat
+							#TODO: Add blockers
+							#TODO: Add colonization event?
+							set_name = "[PREV.PREV.GetName] Abandoned Habitat"
 						}
 					}
 				}
 				set_planet_flag = has_megastructure
-				set_deposit = d_alloys_5
 			}
-			# Create an energy habitat somewhere
+			# Create a mining habitat somewhere
 			random_system_planet = {
 				limit = {
 					NOR = {
-						# Seni-Valid location for habitat
+						# Semi-Valid location for habitat
 						has_planet_flag = megastructure
 						has_planet_flag = has_megastructure
 						is_planet_class = pc_habitat
@@ -132,6 +135,7 @@ planet_event = {
 						has_planet_flag = starting_deposit
 					}
 				}
+				add_deposit = d_alloys_2
 				solar_system = {
 					spawn_planet = {
 						class = "pc_habitat"
@@ -153,16 +157,20 @@ planet_event = {
 							}
 							set_all_comms_surveyed = yes
 							clear_blockers = yes
+							add_deposit = d_mod_voidrefuge_depressurized_module
+							add_deposit = d_mod_voidrefuge_depressurized_module
 							set_planet_flag = megastructure
 							set_planet_flag = habitat
-							set_planet_flag = energy_habitat
-							set_planet_flag = voidrefuge_energy_habitat
+							set_planet_flag = mining_habitat
+							set_planet_flag = voidrefuge_mining_habitat
 							create_colony = {
 								owner = ROOT.owner
 								species = owner_main_species
 								ethos = owner
 							}
 							set_name = "[PREV.PREV.GetName] Habitat"
+							# Balance out the crippling upkeep of those habitat capitals somewhat
+							add_deposit = d_hab_alloy_2
 						}
 					}
 				}
@@ -196,9 +204,9 @@ country_event = {
 			remove_all_districts = yes
 			clear_blockers = yes
 			
-			# 10 pops need housing (plus some margin) and jobs
+			# 16 pops need housing (plus some margin) and jobs
 			while = {
-				limit = { num_pops < 10 }
+				limit = { num_pops < 16 }
 				create_pop = {
 					species = owner_main_species
 					ethos = random
@@ -208,20 +216,25 @@ country_event = {
 			# 6 housing, 0 jobs
 			add_district = district_hab_housing
 
-			# 3 housing, 3 jobs
-			add_district = district_hab_science
+			# 9 housing, 9 jobs
+			add_district = district_hab_energy
+			add_district = district_hab_energy
+			add_district = district_hab_energy
 
 			# 5 housing, 4 jobs
 			add_building = building_hab_major_capital
 
-			# 0 housing, 4 jobs
+			# 0 housing, 6 jobs
 			add_building = building_hydroponics_farm
 			add_building = building_foundry_1
+			add_building = building_research_lab_1
+
+			add_deposit = d_mod_voidrefuge_depressurized_module
 		}
 
 		# Set up the mining habitat
-		random_planet_within_border = {
-			limit = { has_planet_flag = voidrefuge_mining_habitat }
+		# random_planet_within_border = {
+		# 	limit = { has_planet_flag = voidrefuge_mining_habitat }
 			# create_colony = {
 			# 	owner = ROOT
 			# 	species = owner_main_species
@@ -230,30 +243,30 @@ country_event = {
 			# set_name = "[mod_voidrefuge_mining_planet.GetName] Habitat"
 
 			# 6 pops need housing (plus some margin) and jobs
-			while = {
-				limit = { num_pops < 6 }
-				create_pop = {
-					species = owner_main_species
-					ethos = random
-				}
-			}
+		# 	while = {
+		# 		limit = { num_pops < 6 }
+		# 		create_pop = {
+		# 			species = owner_main_species
+		# 			ethos = random
+		# 		}
+		# 	}
 			
-			# 6 housing, 6 jobs
-			add_district = district_hab_mining
-			add_district = district_hab_mining
+		# 	# 6 housing, 6 jobs
+		# 	add_district = district_hab_mining
+		# 	add_district = district_hab_mining
 
-			# 3 housing, 2 job
-			add_building = building_hab_capital
+		# 	# 3 housing, 2 job
+		# 	add_building = building_hab_capital
 
-			# 0 housing, 2 jobs
-			add_building = building_foundry_1
+		# 	# 0 housing, 2 jobs
+		# 	add_building = building_foundry_1
 
-			check_planet_employment = yes
-		}
+		# 	check_planet_employment = yes
+		# }
 
-		# Set up the energy habitat
+		# Set up the mining habitat
 		random_planet_within_border = {
-			limit = { has_planet_flag = voidrefuge_energy_habitat }
+			limit = { has_planet_flag = voidrefuge_mining_habitat }
 			# create_colony = {
 			# 	owner = ROOT
 			# 	species = owner_main_species
@@ -264,9 +277,9 @@ country_event = {
 			remove_all_buildings = yes
 			remove_all_districts = yes
 
-			# 8 pops need housing (plus some margin) and jobs
+			# 7 pops need housing (plus some margin) and jobs
 			while = {
-				limit = { num_pops < 8 }
+				limit = { num_pops < 7 }
 				create_pop = {
 					species = owner_main_species
 					ethos = random
@@ -274,8 +287,8 @@ country_event = {
 			}
 
 			# 6 housing, 6 jobs
-			add_district = district_hab_energy
-			add_district = district_hab_energy
+			add_district = district_hab_mining
+			add_district = district_hab_mining
 
 			# 3 housing, 2 job
 			add_building = building_hab_capital
