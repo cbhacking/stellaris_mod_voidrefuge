@@ -27,6 +27,22 @@ planet_event = {
 	}
 
 	immediate = {
+		# Remove pre-generated pops, buildings, districts, and blockers
+		while = {
+			limit = { num_pops > 1 }
+			random_pop = {
+				kill_pop = yes
+			}
+		}
+		remove_all_buildings = yes
+		remove_all_districts = yes
+		clear_blockers = yes
+		# Add a single blocker
+		add_deposit = d_mod_voidrefuge_depressurized_module
+
+		# Does this even do anything?
+		check_planet_employment = yes
+
 		solar_system = {
 			# Create a new planet where the homeworld currently is
 			spawn_planet = {
@@ -134,7 +150,7 @@ planet_event = {
 						has_planet_flag = starting_deposit
 					}
 				}
-				add_deposit = d_alloys_2
+				add_deposit = d_alloys_5
 				solar_system = {
 					spawn_planet = {
 						class = "pc_habitat"
@@ -167,9 +183,8 @@ planet_event = {
 								species = owner_main_species
 								ethos = owner
 							}
-							set_name = "[PREV.PREV.GetName] Habitat"
 							# Balance out the crippling upkeep of those habitat capitals somewhat
-							add_deposit = d_hab_alloy_2
+							add_deposit = d_hab_alloy_5
 						}
 					}
 				}
@@ -193,33 +208,7 @@ country_event = {
 	immediate = {
 		# Set up the capital
 		home_planet = {
-			# Remove pre-generated pops, buildings, districts
-			while = {
-				limit = { num_pops > 1 }
-				random_pop = {
-					kill_pop = yes
-				}
-			}
-			remove_all_buildings = yes
-			remove_all_districts = yes
-			clear_blockers = yes
-			
-			# 16 pops need housing (plus some margin) and jobs
-			while = {
-				limit = { num_pops < 17 }
-				create_pop = {
-					species = owner_main_species
-					ethos = random
-				}
-			}
-
-			# 6 housing, 0 jobs
-			add_district = district_hab_housing
-
-			# 9 housing, 9 jobs
-			add_district = district_hab_energy
-			add_district = district_hab_energy
-			add_district = district_hab_energy
+			# 17 pops need housing (plus some margin) and jobs
 
 			# 5 housing, 4 jobs
 			add_building = building_hab_major_capital
@@ -229,7 +218,13 @@ country_event = {
 			add_building = building_foundry_1
 			add_building = building_research_lab_1
 
-			add_deposit = d_mod_voidrefuge_depressurized_module
+			# 6 housing, 0 jobs
+			add_district = district_hab_housing
+
+			# 9 housing, 9 jobs
+			add_district = district_hab_energy
+			add_district = district_hab_energy
+			add_district = district_hab_energy
 
 			check_planet_employment = yes
 		}
@@ -238,27 +233,17 @@ country_event = {
 		random_planet_within_border = {
 			limit = { has_planet_flag = voidrefuge_mining_habitat }
 
-			remove_all_buildings = yes
-			remove_all_districts = yes
-
 			# 7 pops need housing (plus some margin) and jobs
-			while = {
-				limit = { num_pops < 7 }
-				create_pop = {
-					species = owner_main_species
-					ethos = random
-				}
-			}
-
-			# 6 housing, 6 jobs
-			add_district = district_hab_mining
-			add_district = district_hab_mining
 
 			# 3 housing, 2 job
 			add_building = building_hab_capital
 
 			# 0 housing, 2 jobs
 			add_building = building_factory_1
+
+			# 6 housing, 6 jobs
+			add_district = district_hab_mining
+			add_district = district_hab_mining
 
 			check_planet_employment = yes
 		}
@@ -277,6 +262,50 @@ country_event = {
 	}
 
 	immediate = {
+		# Get the names of planets that habitats orbit
+		random_planet_within_border = {
+			limit = { has_planet_flag = voidrefuge_mining_habitat_planet }
+			save_event_target_as = mining_hab_planet
+		}
+		random_planet_within_border = {
+			limit = { has_planet_flag = voidrefuge_abandoned_habitat_planet }
+			save_event_target_as = abandoned_hab_planet
+		}
+
+		# Add pops to habitats
+		home_planet = {
+			# Spawn up to 17 pops and hope they take valid jobs...
+			while = {
+				limit = { num_pops < 17 }
+				create_pop = {
+					species = owner_main_species
+					ethos = random
+				}
+			}
+			check_planet_employment = yes
+		}
+
+		# Set names and add pops where needed
+		solar_system = {
+			random_system_planet = {
+				limit = { has_planet_flag = voidrefuge_mining_habitat }
+				set_name = "[mining_hab_planet.GetName] Mining Habitat"
+				# Spawn 7 pops and hope they take their jobs... 
+				while = {
+					limit = { num_pops < 7 }
+					create_pop = {
+						species = owner_main_species
+						ethos = random
+					}
+				}
+				check_planet_employment = yes
+			}
+			random_system_planet = {
+				limit = { has_planet_flag = voidrefuge_abandoned_habitat }
+				set_name = "[abandoned_hab_planet.GetName] Research Habitat"
+			}
+		}
+		
 		# Fix habitat graphical cultures
 		every_planet_within_border = {
 			limit = {
@@ -285,27 +314,6 @@ country_event = {
 			set_planet_entity = {
 				entity = "orbital_habitat_entity"
 				graphical_culture = ROOT
-			}
-		}
-		# Fix habitat names
-		random_planet_within_border = {
-			limit = { has_planet_flag = voidrefuge_mining_habitat_planet }
-			save_event_target_as = mining_hab_planet
-			solar_system = {
-				random_system_planet = {
-					limit = { has_planet_flag = voidrefuge_mining_habitat }
-					set_name = "[mining_hab_planet.GetName] Mining Habitat"
-				}
-			}
-		}
-		random_planet_within_border = {
-			limit = { has_planet_flag = voidrefuge_abandoned_habitat_planet }
-			save_event_target_as = abandoned_hab_planet
-			solar_system = {
-				random_system_planet = {
-					limit = { has_planet_flag = voidrefuge_abandoned_habitat }
-					set_name = "[abandoned_hab_planet.GetName] Research Habitat"
-				}
 			}
 		}
 	}
