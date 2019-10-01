@@ -1,0 +1,51 @@
+# Never occurs naturally, found on voidrefuge pre-generated stations 
+d_mod_voidrefuge_depressurized_module = {
+	icon = "unused/d_space_walk"
+	is_for_colonizeable = yes
+	category = deposit_cat_blockers
+
+	potential = {
+		always = no
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+
+	time = 120
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 200
+			alloys = 25
+		}
+	}
+
+	prerequisites = { "tech_habitat_1" }
+}
+
+# Never occurs naturally, found on voidrefuge pre-generated stations 
+d_mod_voidrefuge_shattered_section = {
+	icon = "unused/d_space_walk"
+	is_for_colonizeable = yes
+	category = deposit_cat_blockers
+
+	potential = {
+		always = no
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+
+	time = 300
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 500
+			alloys = 300
+		}
+	}
+
+	prerequisites = { "tech_habitat_1" }
+}
