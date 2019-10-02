@@ -10,6 +10,7 @@ d_mod_voidrefuge_depressurized_module = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
+		planet_buildings_alloys_upkeep_mult = -0.1
 	}
 
 	time = 120
@@ -36,6 +37,7 @@ d_mod_voidrefuge_shattered_section = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
+		planet_buildings_alloys_upkeep_mult = -0.1
 	}
 
 	time = 300
