@@ -94,6 +94,20 @@ building_hab_capital = {
 		planet_buildings_alloys_upkeep_mult = -0.2
 	}
 	
+	# Add extra housing from Imperious Archictecture
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_mod_voidrefuge
+				has_swapped_tradition = tr_domination_imperious_architecture_mod_voidrefuge
+			}					
+		}
+		modifier = {
+			planet_housing_add = 1
+		}
+	}
+	
 	triggered_desc = {
 		trigger = {
 			exists = owner
@@ -324,6 +338,20 @@ building_hab_major_capital = {
 			owner = { has_civic = civic_mod_voidrefuge }
 		}
 		planet_buildings_alloys_upkeep_mult = -0.2
+	}
+	
+	# Add extra housing from Imperious Archictecture
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_mod_voidrefuge
+				has_swapped_tradition = tr_domination_imperious_architecture_mod_voidrefuge
+			}					
+		}
+		modifier = {
+			planet_housing_add = 2
+		}
 	}
 	
 	triggered_desc = {

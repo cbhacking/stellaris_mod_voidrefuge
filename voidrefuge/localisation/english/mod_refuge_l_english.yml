@@ -6,3 +6,8 @@
  d_mod_voidrefuge_depressurized_module_desc:0 "Lack of maintenance has resulted in this formerly-habitable area losing the ability to contain an atmosphere."
  d_mod_voidrefuge_shattered_section:0 "Shattered Section"
  d_mod_voidrefuge_shattered_section_desc:0 "A wing of this habitat was partially destroyed and has never been rebuilt."
+ tr_domination_adopt_mod_voidrefuge:0 "$tradition_domination$"
+ tr_domination_adopt_mod_voidrefuge_desc:0 "$tradition_domination_desc$\n\n$tr_domination_adopt_mod_voidrefuge_effect$\n\n$tr_domination_finish_effect$"
+ tr_domination_adopt_mod_voidrefuge_effect:0 "§E$TRADITIONS_ADOPT$:§!\n§Y$mining_station_plural$§! and §Y$research_station_plural$§! build cost reduced by §G25%§!."
+ tr_domination_imperious_architecture_mod_voidrefuge:0 "$tr_domination_imperious_architecture$"
+ tr_domination_imperious_architecture_mod_voidrefuge_desc:0 "£building£ §YHabitat Capital Buildings§! and provide §G+1§! £housing£ §Y$MOD_PLANET_HOUSING_ADD$§! per level."
