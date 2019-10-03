@@ -16,7 +16,7 @@ country_event = {
 	}
 }
 
-# Create habitats
+# Create "original homeworld"
 planet_event = {
 	id = mod_voidrefuge_game_start.2
 	hide_window = yes
@@ -27,19 +27,6 @@ planet_event = {
 	}
 
 	immediate = {
-		# Remove pre-generated pops, buildings, districts, and blockers
-		while = {
-			limit = { num_pops > 1 }
-			random_pop = {
-				kill_pop = yes
-			}
-		}
-		remove_all_buildings = yes
-		remove_all_districts = yes
-		clear_blockers = yes
-		# Add a single blocker
-		add_deposit = d_mod_voidrefuge_depressurized_module
-
 		solar_system = {
 			# Create a new planet where the homeworld currently is
 			spawn_planet = {
@@ -58,29 +45,38 @@ planet_event = {
 					set_name = ROOT
 					surveyed = {
 						set_surveyed = yes
-						surveyor = PREVPREV.owner
+						surveyor = ROOT.owner
 					}
 					set_all_comms_surveyed = yes
 					set_planet_flag = has_megastructure
 					clear_deposits = yes
 					add_deposit = d_energy_1
 
-					ROOT = {
+					# ROOT = {
 						#TODO: Fix location? The habitat is over the planet, but not quite where it would be normally
 						# set_location = {
 						# 	target = PREV
 						# 	angle = 45
 						# 	distance = 9.899
 						# }
-						set_name = "New [THIS.GetName] Capital Habitat"
-						set_planet_size = 6
-						set_planet_flag = energy_habitat
-						set_ring = no
-					}
+					# }
 				}
 			}
 		}
+	}
+}
 
+# Create additional habitats
+planet_event = {
+	id = mod_voidrefuge_game_start.3
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		owner = { has_civic = civic_mod_voidrefuge }
+	}
+
+	immediate = {
 		solar_system = {
 			# Create an uninhabited research habitat somewhere
 			random_system_planet = {
@@ -168,13 +164,11 @@ planet_event = {
 								surveyor = owner
 							}
 							set_all_comms_surveyed = yes
-							clear_blockers = yes
-							add_deposit = d_mod_voidrefuge_depressurized_module
-							add_deposit = d_mod_voidrefuge_depressurized_module
 							set_planet_flag = megastructure
 							set_planet_flag = habitat
 							set_planet_flag = mining_habitat
 							set_planet_flag = voidrefuge_mining_habitat
+							# Create a colony on the mining habitat
 							create_colony = {
 								owner = ROOT.owner
 								species = owner_main_species
@@ -192,61 +186,114 @@ planet_event = {
 	}
 }
 
-# Colonize habitats
-country_event = {
-	id = mod_voidrefuge_game_start.3
+# Set up capital
+planet_event = {
+	id = mod_voidrefuge_game_start.4
 	hide_window = yes
 	is_triggered_only = yes
 
 	trigger = {
-		has_civic = civic_mod_voidrefuge
+		owner = { has_civic = civic_mod_voidrefuge }
 	}
 
 	immediate = {
-		# Set up the capital
-		home_planet = {
-			# 17 pops need housing (plus some margin) and jobs
+		# Set properties
+		set_name = "New [THIS.GetName] Capital Habitat"
+		set_planet_size = 6
+		set_planet_flag = energy_habitat
+		set_ring = no
 
-			# 5 housing, 4 jobs
-			add_building = building_hab_major_capital
-
-			# 0 housing, 6 jobs
-			add_building = building_hydroponics_farm
-			add_building = building_foundry_1
-			add_building = building_research_lab_1
-
-			# 6 housing, 0 jobs
-			add_district = district_hab_housing
-
-			# 9 housing, 9 jobs
-			add_district = district_hab_energy
-			add_district = district_hab_energy
-			add_district = district_hab_energy
+		# Remove pre-generated pops, buildings, districts, and blockers
+		while = {
+			limit = { num_pops > 1 }
+			random_pop = {
+				kill_pop = yes
+			}
 		}
+		remove_all_buildings = yes
+		remove_all_districts = yes
+		clear_blockers = yes
 
-		# Set up the mining habitat
-		random_planet_within_border = {
-			limit = { has_planet_flag = voidrefuge_mining_habitat }
+		# Add a single blocker
+		add_deposit = d_mod_voidrefuge_depressurized_module
 
-			# 7 pops need housing (plus some margin) and jobs
+		# 17 pops need housing (plus some margin) and jobs
 
-			# 3 housing, 2 job
-			add_building = building_hab_capital
+		# 5 housing, 4 jobs
+		add_building = building_hab_major_capital
 
-			# 0 housing, 2 jobs
-			add_building = building_factory_1
+		# 0 housing, 6 jobs
+		add_building = building_hydroponics_farm
+		add_building = building_foundry_1
+		add_building = building_research_lab_1
 
-			# 6 housing, 6 jobs
-			add_district = district_hab_mining
-			add_district = district_hab_mining
+		# 6 housing, 0 jobs
+		add_district = district_hab_housing
+
+		# 9 housing, 9 jobs
+		add_district = district_hab_energy
+		add_district = district_hab_energy
+		add_district = district_hab_energy
+
+		# Spawn up to 17 pops and hope they take valid jobs...
+		while = {
+			limit = { num_pops < 17 }
+			create_pop = {
+				species = owner_main_species
+				ethos = random
+			}
 		}
 	}
 }
 
+# Set up mining habitat
+planet_event = {
+	id = mod_voidrefuge_game_start.5
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		owner = { has_civic = civic_mod_voidrefuge }
+	}
+
+	immediate = {
+		solar_system = {
+			random_system_planet = {
+				limit = { has_planet_flag = voidrefuge_mining_habitat }
+
+				# Set up blockers
+				clear_blockers = yes
+				add_deposit = d_mod_voidrefuge_depressurized_module
+				add_deposit = d_mod_voidrefuge_depressurized_module
+
+				# 7 pops need housing (plus some margin) and jobs
+
+				# 3 housing, 2 job
+				add_building = building_hab_capital
+
+				# 0 housing, 2 jobs
+				add_building = building_factory_1
+
+				# 6 housing, 6 jobs
+				add_district = district_hab_mining
+				add_district = district_hab_mining
+
+				# Spawn 7 pops and hope they take their jobs... 
+				while = {
+					limit = { num_pops < 7 }
+					create_pop = {
+						species = owner_main_species
+						ethos = random
+					}
+				}
+			}
+		}
+	}
+}
 
 # Final pass to fix habitats
 country_event = {
-	id = mod_voidrefuge_game_start.4
+	id = mod_voidrefuge_game_start.6
 	hide_window = yes
 	is_triggered_only = yes
 
@@ -265,31 +312,11 @@ country_event = {
 			save_event_target_as = abandoned_hab_planet
 		}
 
-		# Add pops to habitats
-		home_planet = {
-			# Spawn up to 17 pops and hope they take valid jobs...
-			while = {
-				limit = { num_pops < 17 }
-				create_pop = {
-					species = owner_main_species
-					ethos = random
-				}
-			}
-		}
-
-		# Set names and add pops where needed
+		# Set names of habitats
 		solar_system = {
 			random_system_planet = {
 				limit = { has_planet_flag = voidrefuge_mining_habitat }
 				set_name = "[mining_hab_planet.GetName] Mining Habitat"
-				# Spawn 7 pops and hope they take their jobs... 
-				while = {
-					limit = { num_pops < 7 }
-					create_pop = {
-						species = owner_main_species
-						ethos = random
-					}
-				}
 			}
 			random_system_planet = {
 				limit = { has_planet_flag = voidrefuge_abandoned_habitat }
