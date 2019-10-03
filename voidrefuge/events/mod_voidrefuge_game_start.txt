@@ -40,9 +40,6 @@ planet_event = {
 		# Add a single blocker
 		add_deposit = d_mod_voidrefuge_depressurized_module
 
-		# Does this even do anything?
-		check_planet_employment = yes
-
 		solar_system = {
 			# Create a new planet where the homeworld currently is
 			spawn_planet = {
@@ -225,8 +222,6 @@ country_event = {
 			add_district = district_hab_energy
 			add_district = district_hab_energy
 			add_district = district_hab_energy
-
-			check_planet_employment = yes
 		}
 
 		# Set up the mining habitat
@@ -244,8 +239,6 @@ country_event = {
 			# 6 housing, 6 jobs
 			add_district = district_hab_mining
 			add_district = district_hab_mining
-
-			check_planet_employment = yes
 		}
 	}
 }
@@ -282,7 +275,6 @@ country_event = {
 					ethos = random
 				}
 			}
-			check_planet_employment = yes
 		}
 
 		# Set names and add pops where needed
@@ -298,7 +290,6 @@ country_event = {
 						ethos = random
 					}
 				}
-				check_planet_employment = yes
 			}
 			random_system_planet = {
 				limit = { has_planet_flag = voidrefuge_abandoned_habitat }
