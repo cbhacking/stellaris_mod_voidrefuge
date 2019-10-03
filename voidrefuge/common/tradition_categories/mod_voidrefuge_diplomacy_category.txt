@@ -14,7 +14,6 @@ tradition_diplomacy = {
 			OR = {
 				# There isn't currently any way to invalidate the civic, but use this form here anyhow?
 				has_valid_civic = civic_mod_voidrefuge
-				
 				has_valid_civic = civic_fanatic_purifiers
 				has_valid_civic = civic_inwards_perfection
 				has_valid_civic = civic_barbaric_despoilers

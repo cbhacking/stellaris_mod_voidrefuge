@@ -1,0 +1,114 @@
+tr_expansion_adopt = {
+	
+	modifier = {
+		planet_colony_development_speed_mult = 0.25
+	}
+
+	tradition_swap = {
+		name = tr_expansion_adopt_machine
+		inherit_effects = yes
+		inherit_icon = yes
+		inherit_name = no
+		trigger = {
+			is_machine_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_expansion_adopt_hive
+		inherit_effects = yes
+		inherit_icon = yes
+		inherit_name = no
+		trigger = {
+			is_hive_empire = yes
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+	
+	# For voidrefuge, reduce habitat cost and buildtime by 10%
+	tradition_swap = {
+		name = tr_expansion_adopt_mod_voidrefuge
+		inherit_effects = no
+		inherit_icon = yes
+		inherit_name = yes
+		trigger = {
+			has_valid_civic = civic_mod_voidrefuge
+		}
+		
+		# Implemented in the habitats file
+
+		weight = {
+			# The AI should really want this one
+			factor = 2
+		}
+	}
+
+	ai_weight = {
+		factor = 10
+		modifier = {
+			factor = 5
+			years_passed < 10
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				AND = {
+					has_tradition = tr_diplomacy_adopt
+					NOT = { has_tradition = tr_diplomacy_finish }
+				}
+				AND = {
+					has_tradition = tr_discovery_adopt
+					NOT = { has_tradition = tr_discovery_finish }
+				}
+				AND = {
+					has_tradition = tr_domination_adopt
+					NOT = { has_tradition = tr_domination_finish }
+				}
+				AND = {
+					has_tradition = tr_harmony_adopt
+					NOT = { has_tradition = tr_harmony_finish }
+				}
+				AND = {
+					has_tradition = tr_prosperity_adopt
+					NOT = { has_tradition = tr_prosperity_finish }
+				}
+				AND = {
+					has_tradition = tr_supremacy_adopt
+					NOT = { has_tradition = tr_supremacy_finish }
+				}
+			}
+		}
+	}
+}
+
+tr_expansion_finish = {
+	modifier = {
+		planet_non_artificial_max_districts_add = 1
+		ascension_perks_add = 1
+	}
+
+	# For voidrefuge, expand habitats instead
+	tradition_swap = {
+		name = tr_expansion_finish_mod_voidrefuge
+		inherit_effects = no
+		inherit_icon = yes
+		inherit_name = yes
+		trigger = {
+			has_valid_civic = civic_mod_voidrefuge
+		}
+
+		# Effect implemented in on_actions
+
+		weight = {
+			factor = 1
+		}
+	}
+
+}

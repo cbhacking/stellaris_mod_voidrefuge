@@ -3,7 +3,7 @@ tr_domination_adopt = {
 		deposit_blockers_cost_mult = -0.333
 	}
 	
-	# voidrefuge doesn't care much about blocker removal
+	# voidrefuge doesn't care much about blocker removal; let habitats build around minor bodies
 	tradition_swap = {
 		name = tr_domination_adopt_mod_voidrefuge
 		inherit_effects = no
@@ -13,11 +13,8 @@ tr_domination_adopt = {
 			has_valid_civic = civic_mod_voidrefuge
 		}
 
-		modifier = {
-			shipclass_mining_station_build_cost_mult = -0.25
-			shipclass_research_station_build_cost_mult = -0.25
-		}
-	
+		# Implemented in habitats file
+
 		weight = {
 			factor = 1
 		}
