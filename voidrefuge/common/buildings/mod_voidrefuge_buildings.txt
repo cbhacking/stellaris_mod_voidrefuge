@@ -145,7 +145,16 @@ building_hab_capital = {
 			owner = { is_hive_empire = yes }
 		}	
 		text = job_synapse_drone_effect_desc
-	}	
+	}
+
+	# Add colonist descriptor text
+	triggered_desc = {
+		trigger = { 
+			exists = owner
+			owner = { has_civic = civic_mod_voidrefuge }		
+		}
+		text = job_colonist_effect_desc
+	}
 
 	upgrades = {
 		"building_hab_major_capital"
@@ -404,6 +413,15 @@ building_hab_major_capital = {
 		}	
 		text = job_synapse_drone_effect_desc
 	}		
+
+	# Add farmer descriptor text
+	triggered_desc = {
+		trigger = { 
+			exists = owner
+			owner = { has_civic = civic_mod_voidrefuge }		
+		}
+		text = job_farmer_effect_desc
+	}
 
 	ai_weight = {
 		weight = 1
