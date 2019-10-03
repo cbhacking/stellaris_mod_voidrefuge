@@ -75,17 +75,17 @@ habitat_0 = {
 			}
 
 			# balance for habitats
-			if = {
-				limit = {
-					exists = owner
-					owner = { NOT = { has_swapped_tradition = tr_domination_adopt_mod_voidrefuge } }
-				}
-				# Domination tree adoption lets voidrefuge ignore this limitation
-				custom_tooltip = {
-					fail_text = "requires_not_minor_planetary_body"
+			custom_tooltip = {
+				fail_text = "requires_not_minor_planetary_body"
+				OR = {
 					NOR = {
 						is_asteroid = yes
 						is_moon = yes
+					}
+					# Domination tree adoption lets voidrefuge ignore this limitation
+					AND = {
+						exists = owner
+						owner = { has_swapped_tradition = tr_domination_adopt_mod_voidrefuge }
 					}
 				}
 			}
@@ -144,7 +144,8 @@ habitat_0 = {
 					limit = {
 						from = { has_ascension_perk = ap_voidborn }
 						NOT = { has_modifier = master_builders_habitats }
-						add_modifier = {
+					}
+					add_modifier = {
 						modifier = master_builders_habitats
 						days = -1
 					}
@@ -409,7 +410,7 @@ habitat_0 = {
 }
 
 # Cheaper, faster version for voidrefuge expasion adopters
-habitat_0 = {
+habitat_mod_voidrefuge_0 = {
 	entity = ""
 	construction_entity = "orbital_habitat_entity"
 	portrait = "GFX_megastructure_construction_background"
@@ -482,17 +483,17 @@ habitat_0 = {
 			}
 
 			# balance for habitats
-			if = {
-				limit = {
-					exists = owner
-					owner = { NOT = { has_swapped_tradition = tr_domination_adopt_mod_voidrefuge } }
-				}
-				# Domination tree adoption lets voidrefuge ignore this limitation
-				custom_tooltip = {
-					fail_text = "requires_not_minor_planetary_body"
+			custom_tooltip = {
+				fail_text = "requires_not_minor_planetary_body"
+				OR = {
 					NOR = {
 						is_asteroid = yes
 						is_moon = yes
+					}
+					# Domination tree adoption lets voidrefuge ignore this limitation
+					AND = {
+						exists = owner
+						owner = { has_swapped_tradition = tr_domination_adopt_mod_voidrefuge }
 					}
 				}
 			}
@@ -551,10 +552,10 @@ habitat_0 = {
 					limit = {
 						from = { has_ascension_perk = ap_voidborn }
 						NOT = { has_modifier = master_builders_habitats }
-						add_modifier = {
-							modifier = master_builders_habitats
-							days = -1
-						}
+					}
+					add_modifier = {
+						modifier = master_builders_habitats
+						days = -1
 					}
 				}
 				# Check for Expansion finisher for voidrefuge

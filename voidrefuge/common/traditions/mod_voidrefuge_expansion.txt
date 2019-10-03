@@ -105,6 +105,10 @@ tr_expansion_finish = {
 		}
 
 		# Effect implemented in on_actions
+		modifier = {
+			ascension_perks_add = 1
+		}
+
 
 		weight = {
 			factor = 1

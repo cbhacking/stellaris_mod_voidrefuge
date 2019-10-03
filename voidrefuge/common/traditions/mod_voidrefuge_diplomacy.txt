@@ -11,13 +11,30 @@ tr_diplomacy_adopt = {
 		inherit_name = no
 		trigger = {
 			OR = {
-				# voidrefuge really wants this
-				has_valid_civic = civic_mod_voidrefuge
 				has_valid_civic = civic_fanatic_purifiers
 				has_valid_civic = civic_inwards_perfection
 				is_hive_empire = yes
 				has_valid_civic = civic_barbaric_despoilers
 				is_criminal_syndicate = yes
+			}
+		}
+		modifier = {
+			pop_housing_usage_mult = -0.10
+		}
+		weight = {
+			factor = 1
+		}
+	}
+	
+	tradition_swap = {
+		name = tr_adaptability_adopt_mod_voidrefuge
+		inherit_effects = no
+		inherit_icon = yes
+		inherit_name = no
+		trigger = {
+			OR = {
+				# voidrefuge really wants this; giving it its own swap so we can change the text
+				has_valid_civic = civic_mod_voidrefuge
 			}
 		}
 		modifier = {
