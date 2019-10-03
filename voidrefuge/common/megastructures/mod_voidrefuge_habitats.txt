@@ -552,8 +552,9 @@ habitat_0 = {
 						from = { has_ascension_perk = ap_voidborn }
 						NOT = { has_modifier = master_builders_habitats }
 						add_modifier = {
-						modifier = master_builders_habitats
-						days = -1
+							modifier = master_builders_habitats
+							days = -1
+						}
 					}
 				}
 				# Check for Expansion finisher for voidrefuge
