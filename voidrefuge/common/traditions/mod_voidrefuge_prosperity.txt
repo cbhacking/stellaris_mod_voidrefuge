@@ -1,0 +1,274 @@
+tr_prosperity_adopt = {
+	modifier = {
+		station_gatherers_produces_mult = 0.10
+	}
+
+	tradition_swap = {
+		name = tr_prosperity_adopt_machine
+		inherit_effects = no
+		inherit_icon = yes
+		inherit_name = yes
+		trigger = {
+			is_machine_empire = yes
+		}
+		modifier = {
+			station_gatherers_produces_mult = 0.10
+		}
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_prosperity_adopt_hive
+		inherit_effects = no
+		inherit_icon = yes
+		inherit_name = yes
+		trigger = {
+			is_hive_empire = yes
+		}
+		modifier = {
+			station_gatherers_produces_mult = 0.10
+		}
+		weight = {
+			factor = 1
+		}
+	}
+	
+	# Swap this for voidrefuge just because we need the finisher text
+	tradition_swap = {
+		name = tr_prosperity_adopt_mod_voidrefuge
+		inherit_effects = yes
+		inherit_icon = yes
+		inherit_name = yes
+		trigger = {
+			has_valid_civic = civic_mod_voidrefuge
+		}
+		weight = {
+			factor = 1
+		}
+	}
+	
+	ai_weight = {
+		factor = 10
+		modifier = {
+			factor = 5
+			years_passed < 10
+		}
+		modifier = {
+			factor = 2
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_pacifist
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				AND = {
+					has_tradition = tr_diplomacy_adopt
+					NOT = { has_tradition = tr_diplomacy_finish }
+				}
+				AND = {
+					has_tradition = tr_discovery_adopt
+					NOT = { has_tradition = tr_discovery_finish }
+				}
+				AND = {
+					has_tradition = tr_domination_adopt
+					NOT = { has_tradition = tr_domination_finish }
+				}
+				AND = {
+					has_tradition = tr_expansion_adopt
+					NOT = { has_tradition = tr_expansion_finish }
+				}
+				AND = {
+					has_tradition = tr_harmony_adopt
+					NOT = { has_tradition = tr_harmony_finish }
+				}
+				AND = {
+					has_tradition = tr_supremacy_adopt
+					NOT = { has_tradition = tr_supremacy_finish }
+				}
+			}
+		}
+	}
+}
+
+tr_prosperity_finish = {
+	modifier = {
+		ascension_perks_add = 1		
+		job_merchant_per_pop = 0.02
+	}
+
+	tradition_swap = {
+		name = tr_prosperity_finish_machine
+		inherit_effects = no
+		inherit_icon = yes
+		inherit_name = yes
+		trigger = {
+			is_machine_empire = yes
+		}
+
+		modifier = {
+			job_coordinator_per_pop = 0.05
+			ascension_perks_add = 1
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_prosperity_finish_hive
+		inherit_effects = no
+		inherit_icon = yes
+		inherit_name = yes
+		trigger = {
+			is_hive_empire = yes
+		}
+
+		modifier = {
+			job_synapse_drone_per_pop = 0.05
+			ascension_perks_add = 1
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	# With voidrefuge you probably won't get to 100 pops / "planet" so give a 5% trade bonus
+	tradition_swap = {
+		name = tr_prosperity_finish_mod_voidrefuge
+		inherit_effects = no
+		inherit_icon = yes
+		inherit_name = yes
+		trigger = {
+			has_valid_civic = civic_mod_voidrefuge
+		}
+
+		modifier = {
+			#TODO: Make this a flat 1 merchant at either 40 or 50 pops, or at capital upgrade
+			job_merchant_per_pop = 0.02
+			trade_value_mult = 0.05
+			ascension_perks_add = 1
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+}
+
+tr_prosperity_public_works = {
+	possible = {
+		has_tradition = tr_prosperity_sct
+	}
+
+	tradition_swap = {
+		name = tr_prosperity_extended_hives
+		inherit_effects = no
+		inherit_icon = yes
+		inherit_name = no
+		trigger = {
+			is_hive_empire = yes
+		}
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_prosperity_optimized_nexus
+		inherit_effects = no
+		inherit_icon = no
+		inherit_name = no
+		trigger = {
+			is_machine_empire = yes
+		}
+		weight = {
+			factor = 1
+		}
+	}
+
+	# Swapping for voidrefuge to make cities worse and habitats better
+	tradition_swap = {
+		name = tr_prosperity_public_works_mod_voidrefuge
+		inherit_effects = no
+		inherit_icon = yes
+		inherit_name = yes
+		trigger = {
+			has_valid_civic = civic_mod_voidrefuge
+		}
+		# Implemented in districts file
+		weight = {
+			factor = 1
+		}
+	}
+	
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_prosperity_interstellar_franchising = {
+	possible = {
+		has_tradition = tr_prosperity_administrative_operations
+	}
+
+	# implementation done in districts file	
+	
+	tradition_swap = {
+		name = tr_prosperity_efficiency_algorithms
+		inherit_effects = no
+		inherit_icon = no
+		inherit_name = no
+		trigger = {
+			is_machine_empire = yes
+		}
+		modifier = {
+			country_energy_produces_mult = 0.05
+		}
+		weight = {
+			factor = 1
+		}
+	}
+	
+	tradition_swap = {
+		name = tr_prosperity_efficiency_instincts
+		inherit_effects = no
+		inherit_icon = no
+		inherit_name = no
+		trigger = {
+			is_hive_empire = yes
+		}
+		modifier = {
+			country_energy_produces_mult = 0.05
+		}
+		weight = {
+			factor = 1
+		}
+	}
+
+	# Swapping for voidrefuge to make cities worse and habitats better
+	tradition_swap = {
+		name = tr_prosperity_interstellar_franchising_mod_voidrefuge
+		inherit_effects = no
+		inherit_icon = yes
+		inherit_name = yes
+		trigger = {
+			has_valid_civic = civic_mod_voidrefuge
+		}
+		# Implemented in districts file
+		weight = {
+			factor = 1
+		}
+	}
+	
+	ai_weight = {
+		factor = 1000
+	}
+}

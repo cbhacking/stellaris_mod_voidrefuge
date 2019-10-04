@@ -66,11 +66,22 @@ district_hab_housing = {
 			exists = owner
 			owner = {
 				has_civic = civic_mod_voidrefuge
-				#TODO: This should possibly be a swapped tradition?
-				has_non_swapped_tradition = tr_prosperity_public_works
+				has_swapped_tradition = tr_prosperity_public_works_mod_voidrefuge
 			}
 		}
 		job_farmer_add = 1
+	}
+
+	# voidrefuge get a clerk from Interstellar Franchising
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_civic = civic_mod_voidrefuge
+				has_swapped_tradition = tr_prosperity_interstellar_franchising_mod_voidrefuge
+			}
+		}
+		job_clerk_add = 1
 	}
 
 	triggered_planet_modifier = {
