@@ -110,7 +110,7 @@ planet_event = {
 							}
 							surveyed = {
 								set_surveyed = yes
-								surveyor = owner
+								surveyor = ROOT.owner
 							}
 							set_all_comms_surveyed = yes
 							clear_blockers = yes
@@ -162,7 +162,7 @@ planet_event = {
 							}
 							surveyed = {
 								set_surveyed = yes
-								surveyor = owner
+								surveyor = ROOT.owner
 							}
 							set_all_comms_surveyed = yes
 							set_planet_flag = megastructure
