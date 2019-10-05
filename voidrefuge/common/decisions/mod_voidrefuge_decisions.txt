@@ -1,7 +1,7 @@
 
 decision_mod_voidrefuge_expand_habitat_4 = {
 	owned_planets_only = yes
-	icon = "gfx/interface/icons/decisions/decision_space_walk.dds"
+	icon = "decision_space_walk"
 
 	enactment_time = 120
 	resources = {
@@ -26,9 +26,12 @@ decision_mod_voidrefuge_expand_habitat_4 = {
 	}
 
 	effect = {
-		change_planet_size = 1
-		remove_modifier = mod_voidrefuge_small_habitat_4
-		add_modifier = { modifier = mod_voidrefuge_small_habitat_5 days = -1 }
+		custom_tooltip = "decision_mod_voidrefuge_expand_habitat_4_tooltip"
+		hidden_effect = {
+			change_planet_size = 1
+			remove_modifier = mod_voidrefuge_small_habitat_4
+			add_modifier = { modifier = mod_voidrefuge_small_habitat_5 days = -1 }
+		}
 	}
 
 	# Heck, might as well
@@ -43,7 +46,7 @@ decision_mod_voidrefuge_expand_habitat_4 = {
 
 decision_mod_voidrefuge_expand_habitat_5 = {
 	owned_planets_only = yes
-	icon = "gfx/interface/icons/decisions/decision_space_walk.dds"
+	icon = "decision_space_walk"
 
 	enactment_time = 180
 	resources = {
@@ -68,10 +71,13 @@ decision_mod_voidrefuge_expand_habitat_5 = {
 	}
 
 	effect = {
-		change_planet_size = 1
-		remove_modifier = mod_voidrefuge_small_habitat_5
-		# Test to see if we can grow it further
-		planet_event = { id = mod_voidrefuge_on_actions.5 }
+		custom_tooltip = "decision_mod_voidrefuge_expand_habitat_5_tooltip"
+		hidden_effect = {
+			change_planet_size = 1
+			remove_modifier = mod_voidrefuge_small_habitat_5
+			# Test to see if we can grow it further
+			planet_event = { id = mod_voidrefuge_on_actions.5 }
+		}
 	}
 
 	# Heck, might as well
@@ -86,7 +92,7 @@ decision_mod_voidrefuge_expand_habitat_5 = {
 
 decision_mod_voidrefuge_expand_habitat_6 = {
 	owned_planets_only = yes
-	icon = "gfx/interface/icons/decisions/decision_space_walk.dds"
+	icon = "decision_space_walk"
 
 	enactment_time = 180
 	resources = {
@@ -114,7 +120,10 @@ decision_mod_voidrefuge_expand_habitat_6 = {
 	}
 
 	effect = {
-		change_planet_size = 1
+		custom_tooltip = "decision_mod_voidrefuge_expand_habitat_6_tooltip"
+		hidden_effect = {
+			change_planet_size = 1
+		}
 	}
 
 	# Heck, might as well
@@ -129,7 +138,7 @@ decision_mod_voidrefuge_expand_habitat_6 = {
 
 decision_mod_voidrefuge_expand_habitat_7 = {
 	owned_planets_only = yes
-	icon = "gfx/interface/icons/decisions/decision_space_walk.dds"
+	icon = "decision_space_walk"
 
 	enactment_time = 180
 	resources = {
@@ -157,7 +166,10 @@ decision_mod_voidrefuge_expand_habitat_7 = {
 	}
 
 	effect = {
-		change_planet_size = 1
+		custom_tooltip = "decision_mod_voidrefuge_expand_habitat_7_tooltip"
+		hidden_effect = {
+			change_planet_size = 1
+		}
 	}
 
 	# Heck, might as well
@@ -172,7 +184,7 @@ decision_mod_voidrefuge_expand_habitat_7 = {
 
 decision_mod_voidrefuge_expand_habitat_8 = {
 	owned_planets_only = yes
-	icon = "gfx/interface/icons/decisions/decision_space_walk.dds"
+	icon = "decision_space_walk"
 
 	enactment_time = 180
 	resources = {
@@ -192,18 +204,21 @@ decision_mod_voidrefuge_expand_habitat_8 = {
 	}
 
 	allow = {
-		# Growing beyond size 8 requires Master Builders AP
+		# Growing beyond size 8 requires Mega-Engineering tech
 		owner = {
 			has_technology = tech_habitat_1
 			has_technology = tech_starbase_4
-			has_ascension_perk = ap_master_builders
+			has_technology = tech_mega_engineering
 		}
 	}
 
 	effect = {
-		change_planet_size = 1
-		# The end of the line
-		remove_modifier = mod_voidrefuge_habitat_growth_6
+		custom_tooltip = "decision_mod_voidrefuge_expand_habitat_8_tooltip"
+		hidden_effect = {
+			change_planet_size = 1
+			# The end of the line
+			remove_modifier = mod_voidrefuge_habitat_growth_6
+		}
 	}
 
 	# Heck, might as well

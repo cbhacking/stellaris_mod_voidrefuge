@@ -1,4 +1,8 @@
 ﻿ l_english:
+ mod_voidrefuge_reduce_alloy_upkeep_20:0 "Reduces capital £mod_alloys_upkeep_mult£ Alloy upkeep by §G-20%§!."
+ mod_voidrefuge_reduce_alloy_upkeep_10:0 "Reduces capital £mod_alloys_upkeep_mult£ Alloy upkeep by §G-10%§!."
+ mod_voidrefuge_increase_alloy_upkeep_10:0 "Increases capital £mod_alloys_upkeep_mult£ Alloy upkeep by §R10%§!."
+ mod_planet_buildings_alloys_upkeep_mult":0 "Reduces capital £mod_alloys_upkeep_mult£ Alloy upkeep by "
  # Civics
  civic_mod_voidrefuge:0 "Refuge in the Void"
  civic_mod_voidrefuge_desc:0 "This society left its now-uninhabitable home planet for small orbital habitats. Its people now look only to space, and have left planets behind for good."
@@ -52,14 +56,19 @@
  # Decisions
  decision_mod_voidrefuge_expand_habitat_4:0 "Expand Habitat"
  decision_mod_voidrefuge_expand_habitat_4_desc:0 "Enlarge this $pc_habitat$ by size §Y1§!. This will also increase £mod_alloys_upkeep_mult£ Alloy upkeep by §R-0.5§!."
+ decision_mod_voidrefuge_expand_habitat_4_tooltip:0 "Increases habitat size by §Y1§!.\nmod_voidrefuge_increase_alloy_upkeep_10"
  decision_mod_voidrefuge_expand_habitat_5:0 "$decision_mod_voidrefuge_expand_habitat_4$"
  decision_mod_voidrefuge_expand_habitat_5_desc:0 "$decision_mod_voidrefuge_expand_habitat_4_desc$"
+ decision_mod_voidrefuge_expand_habitat_5_tooltip:0 "decision_mod_voidrefuge_expand_habitat_4_tooltip"
  decision_mod_voidrefuge_expand_habitat_6:0 "$ap_mod_voidrefuge_mastery_of_void$"
  decision_mod_voidrefuge_expand_habitat_6_desc:0 "Enlarge this $pc_habitat$ by size §Y1§!. This will not affect upkeep."
+ decision_mod_voidrefuge_expand_habitat_6_tooltip:0 "Increases habitat size by §Y1§!."
  decision_mod_voidrefuge_expand_habitat_7:0 "$decision_mod_voidrefuge_expand_habitat_6$"
  decision_mod_voidrefuge_expand_habitat_7_desc:0 "$decision_mod_voidrefuge_expand_habitat_6_desc$"
+ decision_mod_voidrefuge_expand_habitat_7_tooltip:0 "decision_mod_voidrefuge_expand_habitat_6_tooltip"
  decision_mod_voidrefuge_expand_habitat_8:0 "$decision_mod_voidrefuge_expand_habitat_6$"
  decision_mod_voidrefuge_expand_habitat_8_desc:0 "$decision_mod_voidrefuge_expand_habitat_6_desc$"
+ decision_mod_voidrefuge_expand_habitat_8_tooltip:0 "decision_mod_voidrefuge_expand_habitat_6_tooltip\nLast use of mod_voidrefuge_habitat_growth_6 on this habitat."
  # Megastructures
  habitat_mod_voidrefuge_cheap:0 "$habitat_0$"
  habitat_mod_voidrefuge_cheap_DESC:0 "$habitat_0_DESC$"
