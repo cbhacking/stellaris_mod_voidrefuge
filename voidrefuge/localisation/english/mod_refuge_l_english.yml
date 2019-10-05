@@ -2,7 +2,7 @@
  mod_voidrefuge_reduce_alloy_upkeep_20:0 "Reduces capital £mod_alloys_upkeep_mult£ Alloy upkeep by §G-20%§!."
  mod_voidrefuge_reduce_alloy_upkeep_10:0 "Reduces capital £mod_alloys_upkeep_mult£ Alloy upkeep by §G-10%§!."
  mod_voidrefuge_increase_alloy_upkeep_10:0 "Increases capital £mod_alloys_upkeep_mult£ Alloy upkeep by §R10%§!."
- mod_planet_buildings_alloys_upkeep_mult":0 "Reduces capital £mod_alloys_upkeep_mult£ Alloy upkeep by "
+ mod_planet_buildings_alloys_upkeep_mult:0 "Reduces capital £mod_alloys_upkeep_mult£ Alloy upkeep by "
  # Civics
  civic_mod_voidrefuge:0 "Refuge in the Void"
  civic_mod_voidrefuge_desc:0 "This society left its now-uninhabitable home planet for small orbital habitats. Its people now look only to space, and have left planets behind for good."

@@ -37,8 +37,10 @@ has_no_non_gate_megastructure = {
 					is_megastructure_type = spy_orb_restored
 
 					is_megastructure_type = habitat_0
-					# Check for the new habitat "type"
-					is_megastructure_type = habitat_mod_voidrefuge_0
+					# Check for the new habitat "types"
+					is_megastructure_type = habitat_mod_voidrefuge_cheap
+					is_megastructure_type = habitat_mod_voidrefuge_small
+					is_megastructure_type = habitat_mod_voidrefuge_smallcheap
 
 					is_megastructure_type = matter_decompressor_0
 					is_megastructure_type = matter_decompressor_1

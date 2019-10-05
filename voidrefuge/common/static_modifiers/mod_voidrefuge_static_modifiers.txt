@@ -13,12 +13,16 @@ mod_voidrefuge_mastery_void_1 = {
 mod_voidrefuge_small_habitat_4 = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_space_walk.dds"
 	icon_frame = 2
+	custom_tooltip = "mod_voidrefuge_reduce_alloy_upkeep_20"
+	show_only_custom_tooltip = yes
 	planet_buildings_alloys_upkeep_mult = -0.2
 }
 
 mod_voidrefuge_small_habitat_5 = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_space_walk.dds"
 	icon_frame = 2
+	custom_tooltip = "mod_voidrefuge_reduce_alloy_upkeep_10"
+	show_only_custom_tooltip = yes
 	planet_buildings_alloys_upkeep_mult = -0.1
 }
 
