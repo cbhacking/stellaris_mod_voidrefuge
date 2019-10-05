@@ -811,7 +811,7 @@ habitat_mod_voidrefuge_small = {
 		category = megastructures
 		cost = {
 			alloys = 2500
-			influence = 200
+			influence = 170
 		}
 	}
 	construction_blocks_others = no
@@ -1209,7 +1209,7 @@ habitat_mod_voidrefuge_smallcheap = {
 		category = megastructures
 		cost = {
 			alloys = 1900
-			influence = 160
+			influence = 130
 		}
 	}
 	construction_blocks_others = no

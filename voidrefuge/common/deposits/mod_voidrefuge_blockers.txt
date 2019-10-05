@@ -18,7 +18,6 @@ d_mod_voidrefuge_depressurized_module = {
 		category = deposit_blockers
 		cost = {
 			energy = 200
-			alloys = 25
 		}
 	}
 
@@ -27,7 +26,7 @@ d_mod_voidrefuge_depressurized_module = {
 
 # Never occurs naturally, found on voidrefuge pre-generated stations 
 d_mod_voidrefuge_shattered_section = {
-	icon = "unused/d_space_walk"
+	icon = "unused/d_ruined_system"
 	is_for_colonizeable = yes
 	category = deposit_cat_blockers
 
@@ -45,7 +44,7 @@ d_mod_voidrefuge_shattered_section = {
 		category = deposit_blockers
 		cost = {
 			energy = 500
-			alloys = 300
+			alloys = 200
 		}
 	}
 

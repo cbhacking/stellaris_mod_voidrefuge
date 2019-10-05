@@ -8,7 +8,7 @@ decision_mod_voidrefuge_expand_habitat_4 = {
 		category = decisions
 		cost = {
 			alloys = 200
-			energy = 500
+			influence = 10
 		}
 	}
 
@@ -53,7 +53,7 @@ decision_mod_voidrefuge_expand_habitat_5 = {
 		category = decisions
 		cost = {
 			alloys = 300
-			energy = 500
+			influence = 20
 		}
 	}
 
@@ -98,8 +98,8 @@ decision_mod_voidrefuge_expand_habitat_6 = {
 	resources = {
 		category = decisions
 		cost = {
-			alloys = 450
-			energy = 500
+			alloys = 300
+			energy = 400
 		}
 	}
 
@@ -145,7 +145,7 @@ decision_mod_voidrefuge_expand_habitat_7 = {
 		category = decisions
 		cost = {
 			alloys = 450
-			energy = 500
+			energy = 600
 		}
 	}
 
@@ -190,8 +190,8 @@ decision_mod_voidrefuge_expand_habitat_8 = {
 	resources = {
 		category = decisions
 		cost = {
-			alloys = 450
-			energy = 500
+			alloys = 600
+			energy = 800
 		}
 	}
 
