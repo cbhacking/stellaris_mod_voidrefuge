@@ -399,20 +399,20 @@ habitat_0 = {
 	}
 }
 
-# Cheaper, faster version for voidrefuge expansion adopters
-habitat_mod_voidrefuge_0 = {
+# Cheaper version for voidrefuge expansion adopters
+habitat_mod_voidrefuge_cheap = {
 	entity = ""
 	construction_entity = "orbital_habitat_entity"
 	portrait = "GFX_megastructure_construction_background"
 	place_entity_on_planet_plane = yes
 	entity_offset = { x = -7 y = -7 }
-	build_time = 1620
+	build_time = 1800
 
 	resources = {
 		category = megastructures
 		cost = {
-			alloys = 2700
-			influence = 180
+			alloys = 2400
+			influence = 160
 		}
 	}
 	construction_blocks_others = no
@@ -798,8 +798,8 @@ habitat_mod_voidrefuge_0 = {
 	}
 }
 
-# Smaller version for voidrefuge civic adopters
-habitat_mod_voidrefuge_1 = {
+# Smaller, faster version for voidrefuge civic adopters
+habitat_mod_voidrefuge_small = {
 	entity = ""
 	construction_entity = "orbital_habitat_entity"
 	portrait = "GFX_megastructure_construction_background"
@@ -824,7 +824,7 @@ habitat_mod_voidrefuge_1 = {
 			has_civic = civic_great_khans_legacy
 			has_country_flag = democratic_khanate_flag
 		}
-		has_swapped_tradition = tr_expansion_adopt_mod_voidrefuge
+		has_valid_civic = civic_mod_voidrefuge
 	}
 
 	possible = {
@@ -1196,20 +1196,20 @@ habitat_mod_voidrefuge_1 = {
 	}
 }
 
-# Cheaper, faster version of small habitats for voidrefuge expansion adopters
-habitat_mod_voidrefuge_3 = {
+# Smaller, faster, and cheapest version for voidrefuge expansion adopters
+habitat_mod_voidrefuge_smallcheap = {
 	entity = ""
 	construction_entity = "orbital_habitat_entity"
 	portrait = "GFX_megastructure_construction_background"
 	place_entity_on_planet_plane = yes
 	entity_offset = { x = -7 y = -7 }
-	build_time = 1320
+	build_time = 1500
 
 	resources = {
 		category = megastructures
 		cost = {
-			alloys = 2200
-			influence = 180
+			alloys = 1900
+			influence = 160
 		}
 	}
 	construction_blocks_others = no

@@ -173,7 +173,6 @@ ap_mod_voidrefuge_mastery_of_void = {
 }
 
 # Can take this after taking Mastery of the Void
-#TODO: Indicate the effect this gives MotV
 ap_master_builders = {
 	possible = {
 		custom_tooltip = {
@@ -181,7 +180,6 @@ ap_master_builders = {
 			num_ascension_perks > 1
 		}
 		custom_tooltip = {
-			#TODO: Update this text
 			fail_text = "requires_ap_voidborn_OR_ap_galactic_wonders"
 			OR = {
 				has_ascension_perk = ap_voidborn
