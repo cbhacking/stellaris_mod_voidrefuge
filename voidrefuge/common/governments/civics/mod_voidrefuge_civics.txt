@@ -1,5 +1,6 @@
 civic_mod_voidrefuge = {
 	playable = { host_has_dlc = "Utopia" }
+	icon = "gfx/interface/icons/ascension_perks/ap_voidborn.dds"
 	starting_colony = pc_habitat # Changes homeworld class regardless of what is picked for empire
 	habitability_preference = pc_habitat
 	preferred_planet_class_neighbor = no

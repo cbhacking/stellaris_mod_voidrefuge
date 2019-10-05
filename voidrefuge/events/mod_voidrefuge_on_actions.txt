@@ -1,6 +1,7 @@
 namespace = mod_voidrefuge_on_actions
 
-# Expansion finisher
+# Expansion finisher check
+# This runs monthly for everybody, which sounds less than ideal for perf, and shouldn't be needed
 event = {
 	id = mod_voidrefuge_on_actions.1
 	hide_window = yes
@@ -20,16 +21,16 @@ event = {
 				has_swapped_tradition = tr_expansion_finish_mod_voidrefuge
 				any_owned_planet = {
 					is_planet_class = pc_habitat
-					NOT = { has_modifier = master_builders_habitats_mod_voidrefuge }
+					NOT = { has_modifier = expansion_finish_habitats_mod_voidrefuge }
 				}
 			}
 			every_owned_planet = {
 				limit = {
 					is_planet_class = pc_habitat
-					NOT = { has_modifier = master_builders_habitats_mod_voidrefuge }
+					NOT = { has_modifier = expansion_finish_habitats_mod_voidrefuge }
 				}
 				add_modifier = {
-					modifier = master_builders_habitats_mod_voidrefuge
+					modifier = expansion_finish_habitats_mod_voidrefuge
 					days = -1
 				}
 			}
@@ -37,8 +38,27 @@ event = {
 	}
 }
 
+# Meta-event for running every time a habitat is built or changes hands
 planet_event = {
 	id = mod_voidrefuge_on_actions.2
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_planet_class = pc_habitat
+	}
+
+	immediate = {
+		planet_event = { id = mod_voidrefuge_on_actions.3 }
+		planet_event = { id = mod_voidrefuge_on_actions.4 }
+		planet_event = { id = mod_voidrefuge_on_actions.5 }
+		#planet_event = { id = mod_voidrefuge_on_actions.6 }
+	}
+}
+
+# Expansion finisher check - runs every time a planet changes hands
+planet_event = {
+	id = mod_voidrefuge_on_actions.3
 	hide_window = yes
 
 	is_triggered_only = yes
@@ -49,13 +69,85 @@ planet_event = {
 			has_valid_civic = civic_mod_voidrefuge
 			has_swapped_tradition = tr_expansion_finish_mod_voidrefuge
 		}
-		NOT = { has_modifier = master_builders_habitats_mod_voidrefuge }
+		NOT = { has_modifier = expansion_finish_habitats_mod_voidrefuge }
 	}	
 	
 	immediate = {
 		add_modifier = {
-			modifier = master_builders_habitats_mod_voidrefuge
+			modifier = expansion_finish_habitats_mod_voidrefuge
 			days = -1
+		}
+	}
+}
+
+# Mastery of Void check - runs every time a planet changes hands
+planet_event = {
+	id = mod_voidrefuge_on_actions.4
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		is_planet_class = pc_habitat
+		owner = {
+			has_valid_civic = civic_mod_voidrefuge
+			has_ascension_perk = ap_mod_voidrefuge_mastery_of_void
+		}
+		NOT = {
+			has_modifier = mod_voidrefuge_mastery_void_1
+		}
+	}	
+	
+	immediate = {
+		add_modifier = {
+			modifier = mod_voidrefuge_mastery_void_1
+			days = -1
+		}
+	}
+}
+
+# Habitat growth potential check - runs every time a planet changes hands
+planet_event = {
+	id = mod_voidrefuge_on_actions.5
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_planet_class = pc_habitat
+	}
+
+	immediate = {
+		IF = {
+			limit = {
+				planet_size = 4
+				NOT = { has_modifier = mod_voidrefuge_small_habitat_4 }
+			}
+			add_modifier = { modifier = mod_voidrefuge_small_habitat_4 days = -1 }
+		}
+		ELSE_IF = {
+			limit = {
+				planet_size = 5
+				NOT = { has_modifier = mod_voidrefuge_small_habitat_5 }
+			}
+			add_modifier = { modifier = mod_voidrefuge_small_habitat_5 days = -1 }
+		}
+		ELSE_IF = {
+			# If you have the civic and AP, you can grow habitats
+			limit = {
+				planet_size < 9
+				owner = {
+					has_valid_civic = civic_mod_voidrefuge
+					has_ascension_perk = ap_mod_voidrefuge_mastery_of_void
+				}
+			}
+			IF = {
+				limit = { NOT = { has_modifier = mod_voidrefuge_habitat_growth_6 } }
+				add_modifier = { modifier = mod_voidrefuge_habitat_growth_6 days = -1 }
+			}
+		}
+		ELSE = {
+			# Remove the modifier from habitats owned by those without the AP
+			remove_modifier = mod_voidrefuge_habitat_growth_6
 		}
 	}
 }

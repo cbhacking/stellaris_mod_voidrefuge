@@ -104,15 +104,26 @@ tr_expansion_finish = {
 			has_valid_civic = civic_mod_voidrefuge
 		}
 
-		# Effect implemented in on_actions
+		# Effect implemented in on_actions and events
 		modifier = {
 			ascension_perks_add = 1
 		}
 
+		on_enabled = {
+			every_controlled_planet = {
+				limit = {
+					is_planet_class = pc_habitat
+					NOT = { has_modifier = expansion_finish_habitats_mod_voidrefuge }
+				}
+				add_modifier = {
+					modifier = expansion_finish_habitats_mod_voidrefuge
+					days = -1
+				}
+			}
+		}
 
 		weight = {
 			factor = 1
 		}
 	}
-
 }

@@ -1,5 +1,30 @@
-master_builders_habitats_mod_voidrefuge = {
-	icon = "gfx/interface/icons/planet_modifiers/pm_default.dds"
+expansion_finish_habitats_mod_voidrefuge = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_satellite_in_orbit.dds"
 	icon_frame = 1
 	planet_max_districts_add = 1
 }
+
+mod_voidrefuge_mastery_void_1 = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_mastery_of_nature.dds"
+	icon_frame = 1
+	planet_max_districts_add = 1
+}
+
+mod_voidrefuge_small_habitat_4 = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_space_walk.dds"
+	icon_frame = 2
+	planet_buildings_alloys_upkeep_mult = -0.2
+}
+
+mod_voidrefuge_small_habitat_5 = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_space_walk.dds"
+	icon_frame = 2
+	planet_buildings_alloys_upkeep_mult = -0.1
+}
+
+# No upkeep modification for size 6+
+mod_voidrefuge_habitat_growth_6 = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_space_walk.dds"
+	icon_frame = 2
+}
+

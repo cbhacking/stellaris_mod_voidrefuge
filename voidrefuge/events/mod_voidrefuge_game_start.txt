@@ -100,7 +100,7 @@ planet_event = {
 						orbit_location = yes
 						orbit_angle_offset = 45
 						orbit_distance_offset = 9.899
-						size = 6
+						size = 4
 						has_ring = no
 
 						init_effect = {
@@ -121,6 +121,7 @@ planet_event = {
 							set_planet_flag = habitat
 							set_planet_flag = research_habitat
 							set_planet_flag = voidrefuge_abandoned_habitat
+							add_modifier = { modifier = mod_voidrefuge_small_habitat_4 days = -1 }
 							#TODO: Add colonization event?
 						}
 					}
@@ -151,7 +152,7 @@ planet_event = {
 						orbit_location = yes
 						orbit_angle_offset = 45
 						orbit_distance_offset = 9.899
-						size = 6
+						size = 4
 						has_ring = no
 
 						init_effect = {
@@ -168,6 +169,7 @@ planet_event = {
 							set_planet_flag = habitat
 							set_planet_flag = mining_habitat
 							set_planet_flag = voidrefuge_mining_habitat
+							add_modifier = { modifier = mod_voidrefuge_small_habitat_4 days = -1 }
 							# Create a colony on the mining habitat
 							create_colony = {
 								owner = ROOT.owner
@@ -199,7 +201,8 @@ planet_event = {
 	immediate = {
 		# Set properties
 		set_name = "New [THIS.GetName] Capital Habitat"
-		set_planet_size = 6
+		set_planet_size = 5
+		add_modifier = { modifier = mod_voidrefuge_small_habitat_5 days = -1 }
 		set_planet_flag = energy_habitat
 		set_ring = no
 
