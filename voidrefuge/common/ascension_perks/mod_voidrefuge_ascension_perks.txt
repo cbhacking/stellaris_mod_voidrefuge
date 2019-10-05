@@ -1,0 +1,264 @@
+# Disallowed for voidrefuge
+ap_world_shaper = {
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_technology_tech_climate_restoration"
+			has_technology = tech_climate_restoration
+		}	
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_1"
+			num_ascension_perks > 0
+		}
+	}
+
+	modifier = {
+		terraforming_cost_mult = -0.25
+	}
+	
+	on_enabled = {
+		custom_tooltip = "allow_gaia"
+	}
+	
+	potential = {
+		NOT = {
+			has_ascension_perk = ap_world_shaper
+		}
+		NOT = { has_authority = auth_hive_mind }
+		# Disallowed for voidrefuge
+		NOT = { has_valid_civic = civic_mod_voidrefuge }
+		OR = {
+			NOT = { has_authority = auth_machine_intelligence }
+			has_valid_civic = civic_machine_servitor
+			has_valid_civic = civic_machine_assimilator
+		}
+	}
+	
+	ai_weight = {
+		factor = 5
+	}
+}
+
+
+# Disallowed for voidrefuge, but half-merged into Mastery of the Void
+ap_mastery_of_nature = {
+	on_enabled = {
+		custom_tooltip = "allow_decision_mastery_of_nature"
+		custom_tooltip = "describe_decision_mastery_of_nature"
+	}
+	modifier = {
+		deposit_blockers_cost_mult = -0.33
+	}
+	
+	potential = {
+		NOT = {
+			has_ascension_perk = ap_mastery_of_nature
+		}
+		NOT = { has_valid_civic = civic_mod_voidrefuge }
+	}
+	
+	ai_weight = {
+		factor = 10
+		modifier = {
+			factor = 0.5
+			num_ascension_perks > 0
+		}
+		modifier = {
+			factor = 0.1
+			num_ascension_perks > 1
+		}		
+	}
+}
+
+# Disallowed for voidrefuge, but half-merged into Mastery of the Void
+ap_voidborn = {
+	potential = {
+		host_has_dlc = "Utopia"
+		NOT = {
+			has_ascension_perk = ap_voidborn
+		}
+		NOT = { has_valid_civic = civic_mod_voidrefuge }
+	}
+	
+	possible = {
+		custom_tooltip = {
+			has_technology = tech_habitat_1
+		}
+	}
+	
+	on_enabled = {
+		custom_tooltip = "ap_master_builders_habitat_size"
+		hidden_effect = {
+			every_planet_within_border = {
+				limit = {
+					is_planet_class = pc_habitat 
+					NOT = { has_modifier = master_builders_habitats }
+				}
+				add_modifier = {
+					modifier = master_builders_habitats
+					days = -1
+				}
+			}
+		}
+	}
+
+	modifier = {
+		pc_habitat_habitability = 0.2
+	}
+	
+	ai_weight = {
+		factor = 10
+		modifier = {
+			factor = 2
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_pacifist
+		}
+	}
+}
+
+ap_mod_voidrefuge_mastery_of_void = {
+	potential = {
+		host_has_dlc = "Utopia"
+		NOT = {
+			has_ascension_perk = ap_mod_voidrefuge_mastery_of_void
+		}
+		has_valid_civic = civic_mod_voidrefuge
+	}
+	
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_technology_starbase_4"
+			has_technology = tech_starbase_4
+		}
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_1"
+			num_ascension_perks > 0
+		}
+	}
+	
+	on_enabled = {
+		custom_tooltip = "ap_mod_voidrefuge_mastery_habitat_size"
+		custom_tooltip = "ap_mod_voidrefuge_habitat_growth_enabled"
+		custom_tooltip = "ap_mod_voidrefuge_habitat_growth_details"
+		hidden_effect = {
+			every_planet_within_border = {
+				limit = {
+					is_planet_class = pc_habitat
+				}
+				# More space on all habitats
+				planet_event = { id = mod_voidrefuge_on_actions.4 }
+				# Enable habitat expansion
+				planet_event = { id = mod_voidrefuge_on_actions.5 }
+			}
+		}
+	}
+
+	modifier = {
+		pc_habitat_habitability = 0.2
+	}
+	
+	ai_weight = {
+		factor = 10
+		modifier = {
+			factor = 2
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_pacifist
+		}
+	}
+}
+
+# Can take this after taking Mastery of the Void
+#TODO: Indicate the effect this gives MotV
+ap_master_builders = {
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_2"
+			num_ascension_perks > 1
+		}
+		custom_tooltip = {
+			#TODO: Update this text
+			fail_text = "requires_ap_voidborn_OR_ap_galactic_wonders"
+			OR = {
+				has_ascension_perk = ap_voidborn
+				has_ascension_perk = ap_mod_voidrefuge_mastery_of_void
+				has_galactic_wonders = yes
+			}
+		}
+
+		custom_tooltip = {
+			fail_text = "requires_mega_engineering"
+			has_technology = tech_mega_engineering
+		}			
+	}
+	modifier = {
+		megastructure_build_speed_mult = 0.5
+		country_megastructure_build_cap_add = 1
+	}
+		
+	potential = {
+		host_has_dlc = "Utopia"
+		NOT = {
+			has_ascension_perk = ap_master_builders
+		}
+	}
+	
+	ai_weight = {
+		factor = 10
+		modifier = {
+			factor = 2
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_pacifist
+		}
+	}
+}
+
+# Can't take this if you're voidrefuge (awfully hard to get, anyhow).
+#TODO: Consider finding some way to make it work with habitats?
+ap_arcology_project = {
+	potential = {
+		host_has_dlc = "Megacorp"
+		is_regular_empire = yes
+		NOR = {
+			has_valid_civic = civic_agrarian_idyll
+			has_valid_civic = civic_mod_voidrefuge
+		}
+		NOT = { has_ascension_perk = ap_arcology_project }
+	}
+	
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_technology_housing_2"
+			has_technology = tech_housing_2
+		}
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_2"
+			num_ascension_perks > 1
+		}		
+	}
+	
+	on_enabled = {
+		custom_tooltip = "allow_arcology_project"
+		custom_tooltip = "decision_arcology_project_effects"
+	}
+	
+	ai_weight = {
+		factor = 10
+		modifier = {
+			factor = 2
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_pacifist
+		}
+	}
+}
+
