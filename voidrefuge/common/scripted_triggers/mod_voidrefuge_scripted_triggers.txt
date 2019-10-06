@@ -41,6 +41,10 @@ has_no_non_gate_megastructure = {
 					is_megastructure_type = habitat_mod_voidrefuge_cheap
 					is_megastructure_type = habitat_mod_voidrefuge_small
 					is_megastructure_type = habitat_mod_voidrefuge_smallcheap
+					is_megastructure_type = habitat_mod_voidrefuge_anywhere
+					is_megastructure_type = habitat_mod_voidrefuge_cheapanywhere
+					is_megastructure_type = habitat_mod_voidrefuge_smallanywhere
+					is_megastructure_type = habitat_mod_voidrefuge_smallcheapanywhere
 
 					is_megastructure_type = matter_decompressor_0
 					is_megastructure_type = matter_decompressor_1
