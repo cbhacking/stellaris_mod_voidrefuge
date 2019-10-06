@@ -1,4 +1,4 @@
-name="Void Refuge (Habitat Start)"
+name="Refuge in the Void (Habitat Start | F**k Planets)"
 path="mod/voidrefuge"
 tags={
 	"Gameplay"
