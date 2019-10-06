@@ -32,7 +32,7 @@ tr_expansion_adopt = {
 		}
 	}
 	
-	# For voidrefuge, reduce habitat cost and buildtime by 10%
+	# For voidrefuge, reduce habitat cost by 20%
 	tradition_swap = {
 		name = tr_expansion_adopt_mod_voidrefuge
 		inherit_effects = no
@@ -41,9 +41,7 @@ tr_expansion_adopt = {
 		trigger = {
 			has_valid_civic = civic_mod_voidrefuge
 		}
-		
 		# Implemented in the habitats file
-
 		weight = {
 			# The AI should really want this one
 			factor = 2

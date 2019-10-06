@@ -17,6 +17,7 @@ tr_diplomacy_adopt = {
 				has_valid_civic = civic_barbaric_despoilers
 				is_criminal_syndicate = yes
 			}
+			NOT = { has_valid_civic = civic_mod_voidrefuge }
 		}
 		modifier = {
 			pop_housing_usage_mult = -0.10
@@ -32,10 +33,8 @@ tr_diplomacy_adopt = {
 		inherit_icon = yes
 		inherit_name = no
 		trigger = {
-			OR = {
-				# voidrefuge really wants this; giving it its own swap so we can change the text
-				has_valid_civic = civic_mod_voidrefuge
-			}
+			# voidrefuge really wants this; giving it its own swap so we can change the text
+			has_valid_civic = civic_mod_voidrefuge
 		}
 		modifier = {
 			pop_housing_usage_mult = -0.10
@@ -128,6 +127,7 @@ tr_diplomacy_finish = {
 				has_valid_civic = civic_barbaric_despoilers
 				is_criminal_syndicate = yes
 			}
+			NOT = { has_valid_civic = civic_mod_voidrefuge }
 		}
 		modifier = {		
 			ascension_perks_add = 1
@@ -275,6 +275,7 @@ tr_diplomacy_open_markets = {
 		trigger = {
 			OR = {
 				# Might want to do something different for voidrefuge but I don't have a good idea
+				# and it's very on-point flavor-wise
 				has_valid_civic = civic_mod_voidrefuge
 				has_valid_civic = civic_fanatic_purifiers
 				has_valid_civic = civic_inwards_perfection
@@ -383,7 +384,7 @@ tr_diplomacy_secure_shipping = {
 		inherit_name = no
 		trigger = {
 			OR = {
-				# Could leave this one as base, but may as well swap it
+				# A voidrefuge empire probably has short trade routes but lots of resettlement
 				has_valid_civic = civic_mod_voidrefuge
 				has_valid_civic = civic_fanatic_purifiers
 				has_valid_civic = civic_inwards_perfection
