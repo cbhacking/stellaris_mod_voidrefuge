@@ -118,6 +118,7 @@ ap_voidborn = {
 	}
 }
 
+#TODO: Get a better icon for this?
 ap_mod_voidrefuge_mastery_of_void = {
 	potential = {
 		host_has_dlc = "Utopia"
@@ -156,7 +157,7 @@ ap_mod_voidrefuge_mastery_of_void = {
 	}
 
 	modifier = {
-		pc_habitat_habitability = 0.2
+		pc_habitat_habitability = 0.1
 	}
 	
 	ai_weight = {
@@ -180,7 +181,7 @@ ap_master_builders = {
 			num_ascension_perks > 1
 		}
 		custom_tooltip = {
-			fail_text = "requires_ap_voidborn_OR_ap_galactic_wonders"
+			fail_text = "requires_ap_voidborn_OR_ap_galactic_wonders_OR_voidrefuge_MotV"
 			OR = {
 				has_ascension_perk = ap_voidborn
 				has_ascension_perk = ap_mod_voidrefuge_mastery_of_void

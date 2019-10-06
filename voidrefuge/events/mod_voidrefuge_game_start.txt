@@ -53,6 +53,9 @@ planet_event = {
 					add_deposit = d_energy_1
 
 					# ROOT = {
+						# owner_main_species = {
+							# set_species_homeworld = PREVPREV
+						# }
 						#TODO: Fix location? The habitat is over the planet, but not quite where it would be normally
 						# set_location = {
 						# 	target = PREV
@@ -93,6 +96,7 @@ planet_event = {
 						has_planet_flag = starting_deposit
 					}
 				}
+				add_deposit = d_engineering_1
 				solar_system = {
 					spawn_planet = {
 						class = pc_habitat

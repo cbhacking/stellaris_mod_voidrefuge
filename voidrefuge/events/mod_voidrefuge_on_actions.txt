@@ -138,6 +138,7 @@ planet_event = {
 			limit = {
 				planet_size > 5
 				planet_size < 9
+				exists = owner
 				owner = {
 					has_valid_civic = civic_mod_voidrefuge
 					has_ascension_perk = ap_mod_voidrefuge_mastery_of_void
