@@ -65,6 +65,7 @@ planet_event = {
 
 	trigger = {
 		is_planet_class = pc_habitat
+		exists = owner
 		owner = {
 			has_valid_civic = civic_mod_voidrefuge
 			has_swapped_tradition = tr_expansion_finish_mod_voidrefuge
@@ -89,6 +90,7 @@ planet_event = {
 
 	trigger = {
 		is_planet_class = pc_habitat
+		exists = owner
 		owner = {
 			has_valid_civic = civic_mod_voidrefuge
 			has_ascension_perk = ap_mod_voidrefuge_mastery_of_void
@@ -134,6 +136,7 @@ planet_event = {
 		ELSE_IF = {
 			# If you have the civic and AP, you can grow habitats
 			limit = {
+				planet_size > 5
 				planet_size < 9
 				owner = {
 					has_valid_civic = civic_mod_voidrefuge
@@ -145,8 +148,9 @@ planet_event = {
 				add_modifier = { modifier = mod_voidrefuge_habitat_growth_6 days = -1 }
 			}
 		}
-		ELSE = {
+		ELSE_IF = {
 			# Remove the modifier from habitats owned by those without the AP
+			limit = { has_modifier = mod_voidrefuge_habitat_growth_6 }
 			remove_modifier = mod_voidrefuge_habitat_growth_6
 		}
 	}

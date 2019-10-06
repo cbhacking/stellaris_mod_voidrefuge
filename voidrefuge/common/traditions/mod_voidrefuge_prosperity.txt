@@ -38,11 +38,14 @@ tr_prosperity_adopt = {
 	# Swap this for voidrefuge just because we need the finisher text
 	tradition_swap = {
 		name = tr_prosperity_adopt_mod_voidrefuge
-		inherit_effects = yes
+		inherit_effects = no
 		inherit_icon = yes
 		inherit_name = yes
 		trigger = {
 			has_valid_civic = civic_mod_voidrefuge
+		}
+		modifier = {
+			station_gatherers_produces_mult = 0.10
 		}
 		weight = {
 			factor = 1
